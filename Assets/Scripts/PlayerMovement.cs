@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    public LayerMask invisibleWallsLayer;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -37,7 +39,8 @@ public class PlayerMovement : MonoBehaviour
                 targetPos.x += input.x;
                 targetPos.y += input.y;
 
-                StartCoroutine(Move(targetPos));
+                if (IsWalkable(targetPos))
+                    StartCoroutine(Move(targetPos));
             }
         }
         animator.SetBool("isMoving", isMoving);
@@ -54,5 +57,14 @@ public class PlayerMovement : MonoBehaviour
         transform.position = targetPos;
 
         isMoving = false;
+    }
+
+    private bool IsWalkable(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 0.2f, invisibleWallsLayer) != null)
+        {
+            return false;
+        }
+        return true;
     }
 }
