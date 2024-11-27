@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
 
@@ -15,19 +16,19 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask invisibleWallsLayer;
 
+    public LayerMask interactableLayer;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    public void HandleUpdate()
     {
         if (!isMoving)
         {
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
-
-
 
             if (input.x != 0) input.y = 0;
             if (input != Vector2.zero)
@@ -44,6 +45,20 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         animator.SetBool("isMoving", isMoving);
+
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.E))
+            Interact();
+    }
+    void Interact()
+    {
+        var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        var interactPos = transform.position + facingDir;
+
+        var collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
+        if (collider != null)
+        {
+            collider.GetComponent<Interactable>()?.Interact();
+        }
     }
 
     IEnumerator Move(Vector3 targetPos)
@@ -61,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetPos)
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f, invisibleWallsLayer) != null)
+        if (Physics2D.OverlapCircle(targetPos, 0.2f, invisibleWallsLayer | interactableLayer) != null)
         {
             return false;
         }
