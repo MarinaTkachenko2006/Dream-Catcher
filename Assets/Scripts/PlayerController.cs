@@ -18,9 +18,12 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask interactableLayer;
 
+    AudioManager audioManager;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void HandleUpdate()
@@ -40,8 +43,13 @@ public class PlayerController : MonoBehaviour
                 targetPos.x += input.x;
                 targetPos.y += input.y;
 
+
                 if (IsWalkable(targetPos))
+                {
                     StartCoroutine(Move(targetPos));
+                    audioManager.PlaySFX(audioManager.steps);
+                }
+
             }
         }
         animator.SetBool("isMoving", isMoving);
