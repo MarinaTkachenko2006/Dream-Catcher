@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor;
+// using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
         var interactPos = transform.position + facingDir;
 
-        var collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
+        var collider = Physics2D.OverlapCircle(interactPos + new Vector3(0, -0.5f), 0.2f, interactableLayer);
         if (collider != null)
         {
             collider.GetComponent<Interactable>()?.Interact();
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetPos)
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f, invisibleWallsLayer | interactableLayer) != null)
+        if (Physics2D.OverlapCircle(targetPos + new Vector3(0, -0.5f), 0.2f, invisibleWallsLayer | interactableLayer) != null)
         {
             return false;
         }

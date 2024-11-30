@@ -45,6 +45,12 @@ TagManager:
   - name: Background
     uniqueID: 3437529153
     locked: 0
+  - name: Shadows
+    uniqueID: 631704889
+    locked: 0
+  - name: Decor
+    uniqueID: 1855218331
+    locked: 0
   - name: Player
     uniqueID: 3450589
     locked: 0
