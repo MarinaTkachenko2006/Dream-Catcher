@@ -28,6 +28,14 @@ public class PlayerController : MonoBehaviour
 
     public void HandleUpdate()
     {
+        float currentSpeed = moveSpeed;
+
+        // Ускорение при удерживании Shift
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            currentSpeed *= 1.5f; // Увеличиваем скорость в 1.5 раза
+        }
+
         if (!isMoving)
         {
             input.x = Input.GetAxisRaw("Horizontal");
@@ -43,13 +51,11 @@ public class PlayerController : MonoBehaviour
                 targetPos.x += input.x;
                 targetPos.y += input.y;
 
-
                 if (IsWalkable(targetPos))
                 {
-                    StartCoroutine(Move(targetPos));
+                    StartCoroutine(Move(targetPos, currentSpeed));
                     audioManager.PlaySFX(audioManager.steps);
                 }
-
             }
         }
         animator.SetBool("isMoving", isMoving);
@@ -69,12 +75,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator Move(Vector3 targetPos)
+    IEnumerator Move(Vector3 targetPos, float speed)
     {
         isMoving = true;
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPos;

@@ -151,7 +151,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 098f2f39ee822a249916ecd96cb08105, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.099
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -279,7 +279,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.007
+  m_Volume: 0.01
   m_Pitch: 1.25
   Loop: 0
   Mute: 0
@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 317882955}
   - component: {fileID: 317882954}
   - component: {fileID: 317882953}
+  - component: {fileID: 317882957}
   m_Layer: 9
   m_Name: Slime
   m_TagString: Untagged
@@ -644,6 +645,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &317882957
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317882951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2cc16f1e6a9aff54cbe3e58b962a13e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &342072810
 GameObject:
   m_ObjectHideFlags: 0
@@ -9631,6 +9653,7 @@ GameObject:
   - component: {fileID: 969353129}
   - component: {fileID: 969353128}
   - component: {fileID: 969353127}
+  - component: {fileID: 969353132}
   m_Layer: 9
   m_Name: Veg
   m_TagString: Untagged
@@ -9796,6 +9819,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1028535872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &969353132
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969353126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3261498e5dee270438c3224c0aeafc62, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1028535871
 GameObject:
   m_ObjectHideFlags: 0
@@ -27348,7 +27392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb94e13f63d1bf46a4caba1101e33ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 2
   invisibleWallsLayer:
     serializedVersion: 2
     m_Bits: 128
