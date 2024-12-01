@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659146a2ca2f15247a22bca34baab99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadLevel: 1
+  LoadLevel: 2
   delayBeforeLoading: 1.5
 --- !u!1 &493024702
 GameObject:
