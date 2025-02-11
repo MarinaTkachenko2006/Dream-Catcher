@@ -51,6 +51,9 @@ TagManager:
   - name: Decor
     uniqueID: 1855218331
     locked: 0
+  - name: UpperFences
+    uniqueID: 1683334999
+    locked: 0
   - name: Player
     uniqueID: 3450589
     locked: 0
