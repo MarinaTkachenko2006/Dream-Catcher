@@ -4821,6 +4821,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: lvl1_spritesheet_225
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a8755ad29caff4d8b6d5acfd76a9fa
+      internalID: 836787220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -4973,6 +4994,7 @@ TextureImporter:
       lvl1_spritesheet_222: 1544843337
       lvl1_spritesheet_223: -1188862385
       lvl1_spritesheet_224: 708482197
+      lvl1_spritesheet_225: 836787220
       lvl1_spritesheet_23: -421012516
       lvl1_spritesheet_24: 778793431
       lvl1_spritesheet_25: -342968168
