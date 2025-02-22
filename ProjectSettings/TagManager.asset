@@ -45,6 +45,9 @@ TagManager:
   - name: Background
     uniqueID: 3437529153
     locked: 0
+  - name: Roads
+    uniqueID: 3439156307
+    locked: 0
   - name: Shadows
     uniqueID: 631704889
     locked: 0
