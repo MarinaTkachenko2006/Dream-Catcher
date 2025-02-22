@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Scripting;
 using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
@@ -19,10 +18,11 @@ public class DialogManager : MonoBehaviour
     {
         Instance = this;
     }
+
     Dialog dialog;
     int currentLine = 0;
     bool IsTyping;
-
+    Coroutine typingCoroutine;
 
     public IEnumerator ShowDialog(Dialog dialog)
     {
@@ -30,22 +30,32 @@ public class DialogManager : MonoBehaviour
         OnShowDialog?.Invoke();
         this.dialog = dialog;
         dialogBox.SetActive(true);
-        StartCoroutine(TypeDialog(dialog.Lines[0]));
+        typingCoroutine = StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
+
     public void HandleUpdate()
     {
-        if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.E)) && !IsTyping)
+        if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.E)))
         {
-            ++currentLine;
-            if (currentLine < dialog.Lines.Count)
+            if (IsTyping)
             {
-                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+                StopCoroutine(typingCoroutine);
+                dialogText.text = dialog.Lines[currentLine];
+                IsTyping = false;
             }
             else
             {
-                dialogBox.SetActive(false);
-                currentLine = 0;
-                OnHideDialog?.Invoke();
+                ++currentLine;
+                if (currentLine < dialog.Lines.Count)
+                {
+                    typingCoroutine = StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+                }
+                else
+                {
+                    dialogBox.SetActive(false);
+                    currentLine = 0;
+                    OnHideDialog?.Invoke();
+                }
             }
         }
     }
