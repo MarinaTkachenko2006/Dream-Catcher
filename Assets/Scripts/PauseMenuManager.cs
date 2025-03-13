@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuManager : MonoBehaviour
 {
     public static PauseMenuManager Instance;
-
+    public GameObject cheatMenuUI;
     public GameObject pauseMenuUI;
     private bool isPaused = false;
 
@@ -20,6 +20,15 @@ public class PauseMenuManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    // без этого сломается чит-меню
+    void Start()
+    {
+        if (cheatMenuUI != null)
+        {
+            cheatMenuUI.SetActive(false); // Скрываем чит-меню при запуске
         }
     }
 
@@ -68,7 +77,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (isPaused) 
+        if (isPaused)
             return;
 
         if (pauseMenuUI != null)
@@ -81,7 +90,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (!isPaused) 
+        if (!isPaused)
             return;
 
         if (pauseMenuUI != null)
@@ -112,6 +121,37 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene("Hub");
+    }
+
+    public void OpenCheatMenu()
+    {
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(false);
+
+        if (cheatMenuUI != null)
+            cheatMenuUI.SetActive(true);
+    }
+
+    public void CloseCheatMenu()
+    {
+        if (cheatMenuUI != null)
+            cheatMenuUI.SetActive(false);
+
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(true);
+    }
+
+    public void ToggleSpeedBoost(bool enabled)
+    {
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (playerObject != null)
+        {
+            PlayerController player = playerObject.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                player.ToggleSpeedBoost(enabled);
+            }
+        }
     }
 
     public void ExitGame()

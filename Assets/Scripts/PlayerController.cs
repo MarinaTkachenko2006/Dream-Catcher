@@ -6,9 +6,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
 
+    public float moveSpeed;
     private bool isMoving;
+    public bool isSpeedBoosted = false;
+    public float baseSpeed;
+    public Sprite normalSprite;
+    public Sprite boostedSprite;
+    private SpriteRenderer spriteRenderer;
 
     private Vector2 input;
 
@@ -24,17 +29,25 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        baseSpeed = moveSpeed;
     }
 
     public void HandleUpdate()
     {
-        float currentSpeed = moveSpeed;
+        float speedMultiplier = 1f;
 
         // Ускорение при удерживании Shift
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            currentSpeed *= 1.5f; // Увеличиваем скорость в 1.5 раза
+            speedMultiplier = 1.5f;
         }
+
+        if (isSpeedBoosted)
+        {
+            speedMultiplier *= 1.75f;
+        }
+        float currentSpeed = baseSpeed * speedMultiplier;
 
         if (!isMoving)
         {
@@ -86,6 +99,12 @@ public class PlayerController : MonoBehaviour
         transform.position = targetPos;
 
         isMoving = false;
+    }
+
+    public void ToggleSpeedBoost(bool enabled)
+    {
+        isSpeedBoosted = enabled;
+        spriteRenderer.sprite = enabled ? boostedSprite : normalSprite;
     }
 
     private bool IsWalkable(Vector3 targetPos)
