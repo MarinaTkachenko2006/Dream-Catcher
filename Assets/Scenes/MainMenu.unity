@@ -158,6 +158,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &152940460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152940462}
+  - component: {fileID: 152940461}
+  m_Layer: 0
+  m_Name: CheatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &152940461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152940460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a60f1e35eef324ca6b86ce32d85414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSpeedBoosted: 0
+--- !u!4 &152940462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152940460}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.0250793, y: 0.34256232, z: 0.5449166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &163875776
 GameObject:
   m_ObjectHideFlags: 0
@@ -3592,6 +3637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1864514045}
   - component: {fileID: 1864514046}
+  - component: {fileID: 1864514047}
   m_Layer: 0
   m_Name: "\u041C\u043E\u0442\u043E\u0446\u0438\u043A\u043B"
   m_TagString: Untagged
@@ -3667,10 +3713,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2004314835}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
-        m_MethodName: ToggleSpeedBoost
-        m_Mode: 6
+      - m_Target: {fileID: 1864514047}
+        m_TargetAssemblyTypeName: BikeCheatToggle, Assembly-CSharp
+        m_MethodName: GiveBike
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3680,6 +3726,19 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1864514047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864514044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b123626aace306146ab0eb1fc311f32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cheatManager: {fileID: 152940461}
 --- !u!1 &1956890718
 GameObject:
   m_ObjectHideFlags: 0
@@ -4709,3 +4768,4 @@ SceneRoots:
   - {fileID: 1182872357}
   - {fileID: 1972526104}
   - {fileID: 2004314836}
+  - {fileID: 152940462}

@@ -142,17 +142,12 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     public void ToggleSpeedBoost(bool enabled)
+{
+    if (CheatManager.Instance != null)
     {
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        if (playerObject != null)
-        {
-            PlayerController player = playerObject.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                player.ToggleSpeedBoost(enabled);
-            }
-        }
+        CheatManager.Instance.ToggleSpeedBoost(enabled);
     }
+}
 
     public void ExitGame()
     {

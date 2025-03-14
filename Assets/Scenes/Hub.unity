@@ -698,9 +698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb94e13f63d1bf46a4caba1101e33ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  baseSpeed: 3
   isSpeedBoosted: 0
-  baseSpeed: 0
   normalSprite: {fileID: 0}
   boostedSprite: {fileID: 0}
   invisibleWallsLayer:

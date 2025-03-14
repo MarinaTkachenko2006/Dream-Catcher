@@ -1,26 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-// using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float moveSpeed;
     private bool isMoving;
+    public float baseSpeed = 3f;
+    private float currentSpeed;
     public bool isSpeedBoosted = false;
-    public float baseSpeed;
+    private bool isSprinting = false;
+    float speedMultiplier = 1f;
     public Sprite normalSprite;
     public Sprite boostedSprite;
     private SpriteRenderer spriteRenderer;
-
     private Vector2 input;
-
     private Animator animator;
-
     public LayerMask invisibleWallsLayer;
-
     public LayerMask interactableLayer;
 
     AudioManager audioManager;
@@ -30,23 +26,22 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        baseSpeed = moveSpeed;
+        currentSpeed = baseSpeed;
     }
 
+    public void ToggleSpeedBoost(bool enabled)
+    {
+        isSpeedBoosted = enabled;
+        spriteRenderer.sprite = enabled ? boostedSprite : normalSprite;
+
+        UpdateSpeedMultiplier();
+    }
     public void HandleUpdate()
     {
-        float speedMultiplier = 1f;
+        isSprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-        // Ускорение при удерживании Shift
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-        {
-            speedMultiplier = 1.5f;
-        }
+        UpdateSpeedMultiplier();
 
-        if (isSpeedBoosted)
-        {
-            speedMultiplier *= 1.75f;
-        }
         float currentSpeed = baseSpeed * speedMultiplier;
 
         if (!isMoving)
@@ -61,8 +56,8 @@ public class PlayerController : MonoBehaviour
                 animator.SetFloat("moveY", input.y);
 
                 var targetPos = transform.position;
-                targetPos.x += input.x;
-                targetPos.y += input.y;
+                targetPos.x += input.x * 0.5f;
+                targetPos.y += input.y * 0.5f;
 
                 if (IsWalkable(targetPos))
                 {
@@ -75,6 +70,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.E))
             Interact();
+    }
+    private void UpdateSpeedMultiplier()
+    {
+        speedMultiplier = 1f;
+        if (isSpeedBoosted)
+            speedMultiplier *= 1.75f;
+        if (isSprinting)
+            speedMultiplier *= 1.5f;
     }
     void Interact()
     {
@@ -99,12 +102,6 @@ public class PlayerController : MonoBehaviour
         transform.position = targetPos;
 
         isMoving = false;
-    }
-
-    public void ToggleSpeedBoost(bool enabled)
-    {
-        isSpeedBoosted = enabled;
-        spriteRenderer.sprite = enabled ? boostedSprite : normalSprite;
     }
 
     private bool IsWalkable(Vector3 targetPos)
