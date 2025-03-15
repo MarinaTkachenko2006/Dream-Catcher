@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     public bool isSpeedBoosted = false;
     private bool isSprinting = false;
     float speedMultiplier = 1f;
-    public Sprite normalSprite;
-    public Sprite boostedSprite;
+    // public Sprite normalSprite;
+    // public Sprite boostedSprite;
     private SpriteRenderer spriteRenderer;
     private Vector2 input;
     private Animator animator;
@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
     public void ToggleSpeedBoost(bool enabled)
     {
         isSpeedBoosted = enabled;
-        spriteRenderer.sprite = enabled ? boostedSprite : normalSprite;
-
+        // spriteRenderer.sprite = enabled ? boostedSprite : normalSprite;
+        animator.SetBool("isSpeedBoosted", enabled);
         UpdateSpeedMultiplier();
     }
     public void HandleUpdate()

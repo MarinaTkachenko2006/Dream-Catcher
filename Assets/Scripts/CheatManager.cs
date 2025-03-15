@@ -50,10 +50,11 @@ public class CheatManager : MonoBehaviour
                 player.ToggleSpeedBoost(enabled);
                 Debug.Log("Чит на скорость " + (enabled ? "включен" : "выключен"));
             }
-            else
-            {
-                Debug.LogError("Игрок не найден");
-            }
+
+        }
+        else
+        {
+            Debug.LogError("Игрок не найден");
         }
     }
 
