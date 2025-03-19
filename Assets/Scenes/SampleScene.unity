@@ -27909,8 +27909,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 3
   isSpeedBoosted: 0
-  normalSprite: {fileID: 0}
-  boostedSprite: {fileID: 0}
   invisibleWallsLayer:
     serializedVersion: 2
     m_Bits: 128
