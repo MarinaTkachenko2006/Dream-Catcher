@@ -10,6 +10,7 @@ public class BattleSystem : MonoBehaviour
 {
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
+
     public Transform enemyBattleStation;
     public Transform playerBattleStation;
 
@@ -21,7 +22,6 @@ public class BattleSystem : MonoBehaviour
 
     public TextMeshProUGUI dialogueText;
     public BattleState state;
-    // Start is called before the first frame update
     void Start()
     {
         state = BattleState.START;
@@ -30,7 +30,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject playerGO = Instantiate(playerPrefab, enemyBattleStation);
+        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
         playerUnit = playerGO.GetComponent<BattleUnit>();
 
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
@@ -44,30 +44,32 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         state = BattleState.PLAYERTURN;
-
+        PlayerTurn();
     }
 
     IEnumerator PlayerAttack()
     {
+
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
-
-        enemyHUD.SetHP(enemyUnit.currentHP);
-        dialogueText.text = "Атака прошла успешно!";
-
-        yield return new WaitForSeconds(2f);
 
         if (isDead)
         {
             state = BattleState.WON;
+            enemyHUD.SetHP(enemyUnit.currentHP = 0);
             EndBattle();
         }
         else
         {
             state = BattleState.ENEMYTURN;
+            enemyHUD.SetHP(enemyUnit.currentHP);
+            dialogueText.text = "Вы нанесли " + playerUnit.damage + " урона...";
+
+            yield return new WaitForSeconds(2f);
             StartCoroutine(EnemyTurn());
         }
-    }
 
+    }
+    // логика поведения врага в битве
     IEnumerator EnemyTurn()
     {
         dialogueText.text = enemyUnit.unitName + " атакует!";
@@ -113,13 +115,14 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerHeal()
     {
         playerUnit.Heal(5);
+        state = BattleState.ENEMYTURN;
 
         playerHUD.SetHP(playerUnit.currentHP);
         dialogueText.text = "Вы восстановили силы";
 
         yield return new WaitForSeconds(2f);
 
-        state = BattleState.ENEMYTURN;
+
         StartCoroutine(EnemyTurn());
     }
 
@@ -135,7 +138,6 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN)
             return;
-
         StartCoroutine(PlayerHeal());
     }
 
