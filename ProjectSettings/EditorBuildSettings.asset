@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Forest.unity
     guid: e7d7cafd68fd7d542a442215bde59687
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 9ac04815f27ba0c49bd9ffbcff728e49
   m_configObjects: {}

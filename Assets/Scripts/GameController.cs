@@ -8,7 +8,8 @@ public enum GameState { FreeRoam, Dialog, Battle }
 public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
-
+    // [SerializeField] private GameObject playerPrefab;
+    public static GameController Instance { get; private set; }
     GameState state;
 
     private void Start()
@@ -35,9 +36,13 @@ public class GameController : MonoBehaviour
         {
             DialogManager.Instance.HandleUpdate();
         }
-        else if (state == GameState.Battle)
-        {
-
-        }
+    }
+    // public GameObject GetPlayerPrefab()
+    // {
+    //     return playerPrefab;
+    // }
+    public void SetState(GameState newState)
+    {
+        state = newState;
     }
 }

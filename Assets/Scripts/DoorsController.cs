@@ -9,7 +9,7 @@ public class DoorsController : MonoBehaviour, Interactable
     AudioManager audioManager;
     [SerializeField] private string levelToLoad;
     // [SerializeField] private float delayBeforeLoading = 1.5f;
-    [SerializeField] LevelLoader levelLoader;
+    // [SerializeField] LevelLoader levelLoader;
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
@@ -19,7 +19,7 @@ public class DoorsController : MonoBehaviour, Interactable
         audioManager.PlaySFX(audioManager.doors);
 
         // StartCoroutine(LoadSceneWithDelay());
-        levelLoader.LoadLevel(levelToLoad);
+        LevelLoader.Instance.LoadLevel(levelToLoad);
 
     }
     // private IEnumerator LoadSceneWithDelay()

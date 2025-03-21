@@ -30,10 +30,10 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
+        GameObject playerGO = Instantiate(BattleLoader.Instance.GetPlayerPrefab(), playerBattleStation);
         playerUnit = playerGO.GetComponent<BattleUnit>();
 
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+        GameObject enemyGO = Instantiate(BattleLoader.Instance.GetEnemyPrefab(), enemyBattleStation);
         enemyUnit = enemyGO.GetComponent<BattleUnit>();
 
         dialogueText.text = "Безумный " + enemyUnit.unitName + " атакует";
@@ -100,10 +100,29 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WON)
         {
             dialogueText.text = "Вы победили!";
+            StartCoroutine(ExitBattle(true));
         }
         else if (state == BattleState.LOST)
         {
             dialogueText.text = "Вы проиграли.";
+            StartCoroutine(ExitBattle(false));
+        }
+    }
+
+    IEnumerator ExitBattle(bool won)
+    {
+        yield return new WaitForSeconds(2f);
+        if (!won)
+        {
+            yield return new WaitForSeconds(3f);
+            LevelLoader.Instance.LoadLevel("Hub");
+        }
+        // GameController.Instance.SetState(GameState.FreeRoam);
+        LevelLoader.Instance.LoadLevel("MainScene");
+
+        if (won)
+        {
+            Destroy(BattleLoader.Instance.GetEnemyPrefab());
         }
     }
 

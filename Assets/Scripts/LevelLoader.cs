@@ -5,13 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public static LevelLoader instance;
+    public static LevelLoader Instance { get; private set; }
     public Animator transition;
     public float transitionTime = 1f;
     void Awake()
     {
-        instance = this;
-        // DontDestroyOnLoad(this.gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     public void LoadLevel(string levelName)
     {
