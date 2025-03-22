@@ -12,7 +12,6 @@ public class DialogManager : MonoBehaviour
     [SerializeField] int lettersPerSecond;
     public event Action OnShowDialog;
     public event Action OnHideDialog;
-    public event Action OnDialogEnd;
     public static DialogManager Instance { get; private set; }
 
     private void Awake()
@@ -32,6 +31,7 @@ public class DialogManager : MonoBehaviour
         this.dialog = dialog;
         dialogBox.SetActive(true);
         typingCoroutine = StartCoroutine(TypeDialog(dialog.Lines[0]));
+        yield return new WaitUntil(() => !IsTyping);
     }
 
     public void HandleUpdate()

@@ -18,7 +18,7 @@ public class BattleSystem : MonoBehaviour
     public BattleHUD enemyHUD;
 
     BattleUnit playerUnit;
-    BattleUnit enemyUnit;
+    EnemyBattleUnit enemyUnit;
 
     public TextMeshProUGUI dialogueText;
     public BattleState state;
@@ -34,9 +34,9 @@ public class BattleSystem : MonoBehaviour
         playerUnit = playerGO.GetComponent<BattleUnit>();
 
         GameObject enemyGO = Instantiate(BattleLoader.Instance.GetEnemyPrefab(), enemyBattleStation);
-        enemyUnit = enemyGO.GetComponent<BattleUnit>();
+        enemyUnit = enemyGO.GetComponent<EnemyBattleUnit>();
 
-        dialogueText.text = "Безумный " + enemyUnit.unitName + " атакует";
+        dialogueText.text = enemyUnit.introText;
 
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
@@ -114,15 +114,16 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
         if (!won)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
             LevelLoader.Instance.LoadLevel("Hub");
         }
         // GameController.Instance.SetState(GameState.FreeRoam);
-        LevelLoader.Instance.LoadLevel("MainScene");
-
         if (won)
         {
-            Destroy(BattleLoader.Instance.GetEnemyPrefab());
+            // enemyUnit.isDefeated = false;
+            BattleLoader.Instance.MarkEnemyAsDefeated(enemyPrefab.name);
+            BattleLoader.Instance.loadingFromBattle = true;
+            BattleLoader.Instance.returnPlayerBackToScene();
         }
     }
 
@@ -140,7 +141,6 @@ public class BattleSystem : MonoBehaviour
         dialogueText.text = "Вы восстановили силы";
 
         yield return new WaitForSeconds(2f);
-
 
         StartCoroutine(EnemyTurn());
     }

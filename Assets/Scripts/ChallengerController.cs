@@ -5,23 +5,28 @@ using UnityEngine;
 
 public class ChallengerController : MonoBehaviour, Interactable
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] GameObject enemyPrefab;
     [SerializeField] Dialog preBattleDialog;
     [SerializeField] Dialog postBattleDialog;
-    bool isDefeated = false;
+
+    // bool dialogFinished = false;
     public void Interact()
     {
-        if (isDefeated)
+        if (BattleLoader.Instance.IsEnemyDefeated(enemyPrefab.name))
         {
             StartCoroutine(DialogManager.Instance.ShowDialog(postBattleDialog));
         }
         else
         {
-            StartCoroutine(DialogManager.Instance.ShowDialog(preBattleDialog));
-            Debug.Log("НАЧАТЬ БИТВУ!!!!!!");
-            BattleLoader.Instance.StartBattle(enemyPrefab);
+            StartCoroutine(StartBattleAfterDialog(preBattleDialog, enemyPrefab));
         }
+    }
 
+    private IEnumerator StartBattleAfterDialog(Dialog dialog, GameObject enemyPrefab)
+    {
+        yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog));
+        Debug.Log("НАЧАТЬ БИТВУ!!!!!!");
+        BattleLoader.Instance.StartBattle(enemyPrefab);
     }
 
     // IEnumerator StartBattleAfterDialog(Dialog preBattleDialog, GameObject enemyPrefab)

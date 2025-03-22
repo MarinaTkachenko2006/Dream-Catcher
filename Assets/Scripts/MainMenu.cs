@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        LevelLoader.Instance.LoadLevel("Hub");
     }
 
     public void GoToSettingsMenu()
@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void ExitGame()
-    { 
+    {
         Application.Quit();
     }
 }
