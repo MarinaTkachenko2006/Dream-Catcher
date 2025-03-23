@@ -25,14 +25,15 @@ public class ChallengerController : MonoBehaviour, Interactable
     private IEnumerator StartBattleAfterDialog(Dialog dialog, GameObject enemyPrefab)
     {
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog));
-        Debug.Log("НАЧАТЬ БИТВУ!!!!!!");
+        yield return StartCoroutine(DialogManager.Instance.WaitForDialogToEnd());
+
+        GameController.Instance.SetState(GameState.BattleDialog);
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+
         BattleLoader.Instance.StartBattle(enemyPrefab);
+        GameController.Instance.SetState(GameState.Battle);
     }
 
-    // IEnumerator StartBattleAfterDialog(Dialog preBattleDialog, GameObject enemyPrefab)
-    // {
-    //     yield return StartCoroutine(DialogManager.Instance.ShowDialog(preBattleDialog));
-    //     BattleLoader.Instance.StartBattle(enemyPrefab);
-    // }
 
 }

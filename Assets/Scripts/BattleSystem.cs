@@ -125,6 +125,7 @@ public class BattleSystem : MonoBehaviour
             BattleLoader.Instance.loadingFromBattle = true;
             BattleLoader.Instance.returnPlayerBackToScene();
         }
+        GameController.Instance.SetState(GameState.FreeRoam);
     }
 
     void PlayerTurn()
