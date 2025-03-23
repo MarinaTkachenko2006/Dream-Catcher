@@ -142,12 +142,12 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     public void ToggleSpeedBoost(bool enabled)
-{
-    if (CheatManager.Instance != null)
     {
-        CheatManager.Instance.ToggleSpeedBoost(enabled);
+        if (CheatManager.Instance != null)
+        {
+            CheatManager.Instance.ToggleSpeedBoost(enabled);
+        }
     }
-}
 
     public void ExitGame()
     {
