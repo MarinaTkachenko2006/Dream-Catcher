@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip background;
     public AudioClip steps;
     public AudioClip doors;
+    public AudioClip click;
 
     private void Start()
     {

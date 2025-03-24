@@ -22,8 +22,10 @@ public class BattleSystem : MonoBehaviour
 
     public TextMeshProUGUI dialogueText;
     public BattleState state;
+    AudioManager audioManager;
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
     }
@@ -135,6 +137,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerHeal()
     {
+        audioManager.PlaySFX(audioManager.click);
         playerUnit.Heal(5);
         state = BattleState.ENEMYTURN;
 
@@ -148,6 +151,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAttackButton()
     {
+        audioManager.PlaySFX(audioManager.click);
         if (state != BattleState.PLAYERTURN)
             return;
 
@@ -156,6 +160,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnHealButton()
     {
+        audioManager.PlaySFX(audioManager.click);
         if (state != BattleState.PLAYERTURN)
             return;
         StartCoroutine(PlayerHeal());

@@ -10,7 +10,7 @@ public class TeleportTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            LevelLoader.Instance.LoadLevel(sceneToLoad);
+            LevelLoader.Instance.LoadLevelFast(sceneToLoad);
         }
         Debug.Log("Метод вызван");
     }

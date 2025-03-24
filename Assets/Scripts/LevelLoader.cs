@@ -24,6 +24,10 @@ public class LevelLoader : MonoBehaviour
     {
         StartCoroutine(LoadNamedLevel(levelName));
     }
+    public void LoadLevelFast(string levelName)
+    {
+        StartCoroutine(LoadNamedLevelFast(levelName));
+    }
 
     IEnumerator LoadNamedLevel(string levelName)
     {
@@ -35,6 +39,26 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(levelName);
 
         // End transition animation
+        transition.SetTrigger("End");
+    }
+
+    IEnumerator LoadNamedLevelFast(string levelName)
+    {
+        transition.SetTrigger("Start");
+
+        float minTransitionDuration = transitionTime * 0.75f;
+        float startTime = Time.time;
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(levelName);
+        operation.allowSceneActivation = false;
+
+        while (Time.time - startTime < minTransitionDuration)
+        {
+            yield return null;
+        }
+        operation.allowSceneActivation = true;
+        yield return new WaitForEndOfFrame();
+
         transition.SetTrigger("End");
     }
 

@@ -4336,6 +4336,10 @@ MonoBehaviour:
     lines:
     - "\u0412\u043E\u0442 \u0431\u044B \u043F\u043E\u0431\u044B\u0432\u0430\u0442\u044C
       \u0432 \u041D\u043E\u0432\u043E\u043C \u041E\u0440\u043B\u0435\u0430\u043D\u0435..."
+    - "(\u25D5\u203F\u25D5)\t"
+    - "\u0669(\uFF61\u2022\u0301\u203F\u2022\u0300\uFF61)\u06F6"
+    - "\u250C\u2229\u2510(\u25E3_\u25E2)\u250C\u2229\u2510\t"
+    - "(\u256F_\u2570)"
 --- !u!1 &459784716
 GameObject:
   m_ObjectHideFlags: 0
@@ -4644,6 +4648,7 @@ MonoBehaviour:
   background: {fileID: 8300000, guid: 098f2f39ee822a249916ecd96cb08105, type: 3}
   steps: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   doors: {fileID: 0}
+  click: {fileID: 0}
 --- !u!4 &773149782
 Transform:
   m_ObjectHideFlags: 0

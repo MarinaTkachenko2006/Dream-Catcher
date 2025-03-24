@@ -2402,9 +2402,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1677980145}
   SFXSource: {fileID: 298527312}
-  background: {fileID: 0}
+  background: {fileID: 8300000, guid: 65885f75eea7bc842b5898a999b6bfd3, type: 3}
   steps: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
+  click: {fileID: 0}
 --- !u!4 &1189133117
 Transform:
   m_ObjectHideFlags: 0
