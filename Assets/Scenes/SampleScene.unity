@@ -27898,7 +27898,7 @@ GameObject:
   - component: {fileID: 2070914467}
   - component: {fileID: 2070914466}
   - component: {fileID: 2070914465}
-  - component: {fileID: 2070914464}
+  - component: {fileID: 2070914469}
   m_Layer: 9
   m_Name: Dude
   m_TagString: Untagged
@@ -27906,33 +27906,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2070914464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070914463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac109e28cbf4b3e4caf3e8a7aef2d730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialog:
-    lines:
-    - "\u042F \u043B\u044E\u0431\u043B\u044E \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u044C
-      \u0441\u044E\u0434\u0430 \u043F\u043E\u0441\u043B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B
-      \u0438 \u043F\u0440\u043E\u0441\u0442\u043E \u043A\u0438\u0434\u0430\u0442\u044C
-      \u043A\u0430\u043C\u043D\u0438 \u0432 \u0432\u043E\u0434\u0443."
-    - "\u0417\u043D\u0430\u0435\u0448\u044C, \u0435\u0441\u043B\u0438 \u043A\u0438\u043D\u0443\u0442\u044C
-      \u043A\u0430\u043C\u0435\u0440 \u0432 \u043E\u0437\u0435\u0440\u043E, \u043C\u043E\u0436\u043D\u043E
-      \u0441\u0442\u0430\u0442\u044C \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u043C
-      \u0447\u0435\u043B\u043E\u0432\u0435\u043A\u043E\u043C \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438,
-      \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043A\u043E\u0433\u0434\u0430-\u043B\u0438\u0431\u043E
-      \u0435\u0433\u043E \u043A\u0430\u0441\u0430\u043B\u0441\u044F."
-    - "\u0425\u043E\u0447\u0435\u0448\u044C \u043A\u0438\u043D\u0443\u0442\u044C
-      \u043A\u0430\u043C\u0435\u043D\u044C?.."
-    - "\u041A\u0440\u0443\u0442\u043E, \u0445\u043E\u0442\u0438 \u0434\u0430\u043B\u044C\u0448\u0435."
 --- !u!61 &2070914465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28073,6 +28046,37 @@ Transform:
   - {fileID: 1509173688}
   m_Father: {fileID: 1028535872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2070914469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070914463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbca762a214eb74ca916a6a988f7aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8862299579988464786, guid: 3b6a9521130869f429dfdc4b18dd6d4f, type: 3}
+  preBattleDialog:
+    lines:
+    - "\u042F \u043B\u044E\u0431\u043B\u044E \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u044C
+      \u0441\u044E\u0434\u0430 \u043F\u043E\u0441\u043B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B
+      \u0438 \u043F\u0440\u043E\u0441\u0442\u043E \u043A\u0438\u0434\u0430\u0442\u044C
+      \u043A\u0430\u043C\u043D\u0438 \u0432 \u0432\u043E\u0434\u0443."
+    - "\u0417\u043D\u0430\u0435\u0448\u044C, \u0435\u0441\u043B\u0438 \u043A\u0438\u043D\u0443\u0442\u044C
+      \u043A\u0430\u043C\u0435\u0440 \u0432 \u043E\u0437\u0435\u0440\u043E, \u043C\u043E\u0436\u043D\u043E
+      \u0441\u0442\u0430\u0442\u044C \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u043C
+      \u0447\u0435\u043B\u043E\u0432\u0435\u043A\u043E\u043C \u0432 \u0438\u0441\u0442\u043E\u0440\u0438\u0438,
+      \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043A\u043E\u0433\u0434\u0430-\u043B\u0438\u0431\u043E
+      \u0435\u0433\u043E \u043A\u0430\u0441\u0430\u043B\u0441\u044F."
+    - "\u0425\u043E\u0447\u0435\u0448\u044C \u043A\u0438\u043D\u0443\u0442\u044C
+      \u043A\u0430\u043C\u0435\u043D\u044C?.."
+    - "\u041A\u0440\u0443\u0442\u043E, \u0445\u043E\u0442\u0438 \u0434\u0430\u043B\u044C\u0448\u0435."
+  postBattleDialog:
+    lines:
+    - "\u0411\u0435\u0437 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0435\u0432."
 --- !u!1 &2111640675
 GameObject:
   m_ObjectHideFlags: 0

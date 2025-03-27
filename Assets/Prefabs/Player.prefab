@@ -131,5 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: "\u0413\u0435\u0440\u043E\u0439"
   damage: 15
-  maxHP: 50
-  currentHP: 50
+  maxHP: 100
+  currentHP: 100
+  maxMP: 100
+  currentMP: 100

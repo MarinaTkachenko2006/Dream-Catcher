@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
 
             if (playerController == null)
             {
-                Debug.LogWarning("PlayerController не найден");
+
             }
             else
             {

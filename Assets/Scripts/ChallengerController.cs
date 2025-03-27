@@ -12,6 +12,7 @@ public class ChallengerController : MonoBehaviour, Interactable
     // bool dialogFinished = false;
     public void Interact()
     {
+        Debug.Log($"Имя врага в контроллере: {enemyPrefab.name}");
         if (BattleLoader.Instance.IsEnemyDefeated(enemyPrefab.name))
         {
             StartCoroutine(DialogManager.Instance.ShowDialog(postBattleDialog));
@@ -30,6 +31,7 @@ public class ChallengerController : MonoBehaviour, Interactable
         GameController.Instance.SetState(GameState.BattleDialog);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+        Debug.Log($"Имя врага в контроллере 2: {enemyPrefab.name}");
 
         BattleLoader.Instance.StartBattle(enemyPrefab);
         GameController.Instance.SetState(GameState.Battle);

@@ -14,7 +14,7 @@ public class BattleSystem : MonoBehaviour
     public Transform enemyBattleStation;
     public Transform playerBattleStation;
 
-    public BattleHUD playerHUD;
+    public PlayerBattleHUD playerHUD;
     public BattleHUD enemyHUD;
 
     BattleUnit playerUnit;
@@ -23,6 +23,7 @@ public class BattleSystem : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public BattleState state;
     AudioManager audioManager;
+    public GameObject backgroundsContainer;
     void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
@@ -32,11 +33,14 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
+        enemyPrefab = BattleLoader.Instance.enemyPrefab;
         GameObject playerGO = Instantiate(BattleLoader.Instance.GetPlayerPrefab(), playerBattleStation);
         playerUnit = playerGO.GetComponent<BattleUnit>();
 
-        GameObject enemyGO = Instantiate(BattleLoader.Instance.GetEnemyPrefab(), enemyBattleStation);
+        GameObject enemyGO = Instantiate(BattleLoader.Instance.enemyPrefab, enemyBattleStation);
         enemyUnit = enemyGO.GetComponent<EnemyBattleUnit>();
+
+        ActivateBackground(enemyUnit.location);
 
         dialogueText.text = enemyUnit.introText;
 
@@ -49,9 +53,50 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
+    void EndBattle()
+    {
+        if (state == BattleState.WON)
+        {
+            dialogueText.text = "Вы победили!";
+            StartCoroutine(ExitBattle(true));
+        }
+        else if (state == BattleState.LOST)
+        {
+            dialogueText.text = "Вы проиграли.";
+            StartCoroutine(ExitBattle(false));
+        }
+        ActivateBackground("");
+    }
+    IEnumerator ExitBattle(bool won)
+    {
+        yield return new WaitForSeconds(2f);
+        if (!won)
+        {
+            yield return new WaitForSeconds(1f);
+            LevelLoader.Instance.LoadLevel("Hub");
+        }
+        // GameController.Instance.SetState(GameState.FreeRoam);
+        if (won)
+        {
+            // enemyUnit.isDefeated = false;
+            BattleLoader.Instance.MarkEnemyAsDefeated(enemyPrefab.name);
+            BattleLoader.Instance.loadingFromBattle = true;
+            BattleLoader.Instance.returnPlayerBackToScene();
+        }
+        GameController.Instance.SetState(GameState.FreeRoam);
+    }
+    void ActivateBackground(string location)
+    {
+        foreach (Transform bg in backgroundsContainer.transform)
+        {
+            bg.gameObject.SetActive(bg.name == location);
+        }
+    }
+
     IEnumerator PlayerAttack()
     {
-
+        playerUnit.currentMP -= 10;
+        playerHUD.SetMP(playerUnit.currentMP);
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
         if (isDead)
@@ -71,6 +116,64 @@ public class BattleSystem : MonoBehaviour
         }
 
     }
+
+    IEnumerator PlayerStrongAttack()
+    {
+        playerUnit.currentMP -= 10;
+        playerHUD.SetMP(playerUnit.currentMP);
+        bool isDead = enemyUnit.TakeDamage(playerUnit.damage * 100);
+
+        if (isDead)
+        {
+            state = BattleState.WON;
+            enemyHUD.SetHP(enemyUnit.currentHP = 0);
+            EndBattle();
+        }
+        else
+        {
+            state = BattleState.ENEMYTURN;
+            enemyHUD.SetHP(enemyUnit.currentHP);
+            dialogueText.text = "Вы нанесли " + playerUnit.damage + " урона";
+
+            yield return new WaitForSeconds(2f);
+            StartCoroutine(EnemyTurn());
+        }
+
+    }
+
+    IEnumerator PlayerHeal()
+    {
+        audioManager.PlaySFX(audioManager.click);
+        playerUnit.Heal(20);
+        state = BattleState.ENEMYTURN;
+
+        playerHUD.SetHP(playerUnit.currentHP);
+        playerHUD.SetMP(playerUnit.currentMP);
+        dialogueText.text = "Вы восстановили силы";
+
+        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(EnemyTurn());
+    }
+
+    IEnumerator PlayerRestoreMana()
+    {
+        audioManager.PlaySFX(audioManager.click);
+        playerUnit.restoreMana(15);
+        state = BattleState.ENEMYTURN;
+
+        playerHUD.SetHP(playerUnit.currentHP);
+        playerHUD.SetMP(playerUnit.currentMP);
+        dialogueText.text = "Вы привели рассудок в порядок";
+
+        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(EnemyTurn());
+    }
+
+
+
+
     // логика поведения врага в битве
     IEnumerator EnemyTurn()
     {
@@ -96,59 +199,10 @@ public class BattleSystem : MonoBehaviour
         }
 
     }
-
-    void EndBattle()
-    {
-        if (state == BattleState.WON)
-        {
-            dialogueText.text = "Вы победили!";
-            StartCoroutine(ExitBattle(true));
-        }
-        else if (state == BattleState.LOST)
-        {
-            dialogueText.text = "Вы проиграли.";
-            StartCoroutine(ExitBattle(false));
-        }
-    }
-
-    IEnumerator ExitBattle(bool won)
-    {
-        yield return new WaitForSeconds(2f);
-        if (!won)
-        {
-            yield return new WaitForSeconds(1f);
-            LevelLoader.Instance.LoadLevel("Hub");
-        }
-        // GameController.Instance.SetState(GameState.FreeRoam);
-        if (won)
-        {
-            // enemyUnit.isDefeated = false;
-            BattleLoader.Instance.MarkEnemyAsDefeated(enemyPrefab.name);
-            BattleLoader.Instance.loadingFromBattle = true;
-            BattleLoader.Instance.returnPlayerBackToScene();
-        }
-        GameController.Instance.SetState(GameState.FreeRoam);
-    }
-
     void PlayerTurn()
     {
         dialogueText.text = "Выберите действие:";
     }
-
-    IEnumerator PlayerHeal()
-    {
-        audioManager.PlaySFX(audioManager.click);
-        playerUnit.Heal(5);
-        state = BattleState.ENEMYTURN;
-
-        playerHUD.SetHP(playerUnit.currentHP);
-        dialogueText.text = "Вы восстановили силы";
-
-        yield return new WaitForSeconds(2f);
-
-        StartCoroutine(EnemyTurn());
-    }
-
     public void OnAttackButton()
     {
         audioManager.PlaySFX(audioManager.click);
@@ -157,13 +211,28 @@ public class BattleSystem : MonoBehaviour
 
         StartCoroutine(PlayerAttack());
     }
+    public void OnStrongAttackButton()
+    {
+        audioManager.PlaySFX(audioManager.click);
+        if (state != BattleState.PLAYERTURN)
+            return;
 
+        StartCoroutine(PlayerStrongAttack());
+    }
     public void OnHealButton()
     {
         audioManager.PlaySFX(audioManager.click);
         if (state != BattleState.PLAYERTURN)
             return;
         StartCoroutine(PlayerHeal());
+    }
+
+    public void OnRestoreMPButton()
+    {
+        audioManager.PlaySFX(audioManager.click);
+        if (state != BattleState.PLAYERTURN)
+            return;
+        StartCoroutine(PlayerRestoreMana());
     }
 
 }

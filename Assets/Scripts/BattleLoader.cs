@@ -12,7 +12,7 @@ public class BattleLoader : MonoBehaviour
     public Vector3 position = new Vector3();
     public string lastScene;
     public bool loadingFromBattle = false;
-    private GameObject enemyPrefab;
+    public GameObject enemyPrefab;
     private HashSet<string> defeatedEnemies = new HashSet<string>();
     // private GameObject playerPrefab;
 
@@ -33,6 +33,7 @@ public class BattleLoader : MonoBehaviour
     {
         rememberPlayerPosition();
         enemyPrefab = enemy;
+        Debug.Log($"Имя врага в BattleLoader в начале: {enemyPrefab.name}");
         // playerPrefab = gameController.GetPlayerPrefab();
 
         // gameController.SetState(GameState.Battle);
@@ -89,6 +90,8 @@ public class BattleLoader : MonoBehaviour
     public void MarkEnemyAsDefeated(string enemyID)
     {
         defeatedEnemies.Add(enemyID);
+        Debug.Log($"Добавлен в список побежденных: {enemyID}");
+        Debug.Log($"Список побежденных: {string.Join(", ", defeatedEnemies)}");
     }
 
     public bool IsEnemyDefeated(string enemyID)
