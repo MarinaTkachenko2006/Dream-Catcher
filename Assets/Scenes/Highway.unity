@@ -151,8 +151,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.01
-  m_Pitch: 1.25
+  m_Volume: 0.199
+  m_Pitch: 1.01
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -282,8 +282,9 @@ MonoBehaviour:
   musicSource: {fileID: 302211093}
   SFXSource: {fileID: 126489732}
   background: {fileID: 8300000, guid: 098f2f39ee822a249916ecd96cb08105, type: 3}
-  steps: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  steps: {fileID: 8300000, guid: 70b3358bd6c180c45a04216c8f895d9d, type: 3}
   doors: {fileID: 0}
+  click: {fileID: 0}
 --- !u!4 &295562090
 Transform:
   m_ObjectHideFlags: 0
@@ -331,7 +332,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 098f2f39ee822a249916ecd96cb08105, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.25
-  m_Pitch: 1
+  m_Pitch: 0.64
   Loop: 1
   Mute: 0
   Spatialize: 0

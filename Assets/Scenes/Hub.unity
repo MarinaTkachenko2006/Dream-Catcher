@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659146a2ca2f15247a22bca34baab99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: SampleScene
+  levelToLoad: Bridges
 --- !u!1 &496951010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1080,7 @@ Transform:
   m_GameObject: {fileID: 972555155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.31, y: 9.13, z: 0}
+  m_LocalPosition: {x: -8.55, y: 9.13, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1328,7 +1328,7 @@ Transform:
   m_GameObject: {fileID: 1350414650}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.31, y: 9.12, z: 0}
+  m_LocalPosition: {x: 9.45, y: 9.12, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1366,7 +1366,7 @@ MonoBehaviour:
   musicSource: {fileID: 2092863740}
   SFXSource: {fileID: 2109813458}
   background: {fileID: 0}
-  steps: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  steps: {fileID: 8300000, guid: 70b3358bd6c180c45a04216c8f895d9d, type: 3}
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
   click: {fileID: 0}
 --- !u!4 &1363941674
@@ -3560,8 +3560,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.02
-  m_Pitch: 1.25
+  m_Volume: 0.2
+  m_Pitch: 1.01
   Loop: 0
   Mute: 0
   Spatialize: 0

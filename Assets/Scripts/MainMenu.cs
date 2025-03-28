@@ -15,16 +15,19 @@ public class MainMenu : MonoBehaviour
 
     public void GoToSettingsMenu()
     {
+        audioManager.PlaySFX(audioManager.click);
         SceneManager.LoadScene("SettingsMenu");
     }
 
     public void GoToMainMenu()
     {
+        audioManager.PlaySFX(audioManager.click);
         SceneManager.LoadScene("MainMenu");
     }
 
     public void ExitGame()
     {
+        audioManager.PlaySFX(audioManager.click);
         Application.Quit();
     }
 }
