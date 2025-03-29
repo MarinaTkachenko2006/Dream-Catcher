@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Photo4.unity
     guid: 681bd92276bb965428dcf090208d86ff
   - enabled: 1
-    path: Assets/Scenes/Highway.unity
+    path: Assets/Scenes/Highway1.unity
     guid: c429af638a691ea4c952d0a4f9aadb67
   - enabled: 1
     path: Assets/Scenes/Photo5.unity
