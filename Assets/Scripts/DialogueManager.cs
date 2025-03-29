@@ -13,10 +13,19 @@ public class DialogManager : MonoBehaviour
     public event Action OnShowDialog;
     public event Action OnHideDialog;
     public static DialogManager Instance { get; private set; }
+    public bool IsDialogFinished { get; private set; } = false;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     Dialog dialog;
@@ -29,8 +38,12 @@ public class DialogManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         OnShowDialog?.Invoke();
         this.dialog = dialog;
+        currentLine = 0;
         dialogBox.SetActive(true);
-        typingCoroutine = StartCoroutine(TypeDialog(dialog.Lines[0]));
+        typingCoroutine = StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+        yield return new WaitUntil(() => dialogBox.activeSelf == false);
+
+        IsDialogFinished = true;
     }
 
     public void HandleUpdate()
@@ -55,6 +68,7 @@ public class DialogManager : MonoBehaviour
                     dialogBox.SetActive(false);
                     currentLine = 0;
                     OnHideDialog?.Invoke();
+                    IsDialogFinished = true;
                 }
             }
         }
@@ -70,5 +84,12 @@ public class DialogManager : MonoBehaviour
             yield return new WaitForSeconds(1f / lettersPerSecond);
         }
         IsTyping = false;
+    }
+    public IEnumerator WaitForDialogToEnd()
+    {
+        while (dialogBox.activeSelf)
+        {
+            yield return null;
+        }
     }
 }

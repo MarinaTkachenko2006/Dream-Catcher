@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class BattleHUD : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
-	public TextMeshProUGUI levelText;
+	public TextMeshProUGUI nameText;
+	// public TextMeshProUGUI levelText;
 	public Slider hpSlider;
 
 	public void SetHUD(BattleUnit unit)
 	{
 		nameText.text = unit.unitName;
-		levelText.text = "Lvl " + unit.unitLevel;
+		// levelText.text = "Lvl " + unit.unitLevel;
 		hpSlider.maxValue = unit.maxHP;
 		hpSlider.value = unit.currentHP;
 	}

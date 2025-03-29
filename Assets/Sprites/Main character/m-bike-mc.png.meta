@@ -101,11 +101,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5
-        y: 2
+        y: 3
         width: 20
-        height: 37
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -122,11 +122,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 34
-        y: 2
+        y: 3
         width: 30
-        height: 37
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,12 +142,12 @@ TextureImporter:
       name: m-bike-mc_2
       rect:
         serializedVersion: 2
-        x: 70
-        y: 2
+        x: 69
+        y: 3
         width: 20
-        height: 37
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,12 +163,12 @@ TextureImporter:
       name: m-bike-mc_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 97
         y: 3
         width: 30
-        height: 37
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,6 +176,174 @@ TextureImporter:
       bones: []
       spriteID: 10094ade141035f42ae119d49dc50b73
       internalID: 577564479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m-bike-mc_4
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 45
+        width: 20
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b3c3ae6a45639744922ae647716e6b1
+      internalID: 980589400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m-bike-mc_5
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 45
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06aebf17e23de0428b3f2521e53a03f
+      internalID: 71278655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m-bike-mc_6
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 45
+        width: 20
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4060d22708f48b345b593a6293e8baf6
+      internalID: -657004060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m-bike-mc_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 46
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 669a74965f95f5e49b00194243f05e9c
+      internalID: -1411619622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m-bike-mc_8
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 85
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9505059093d5ec74e97f6787d1f29f17
+      internalID: -934737289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m-bike-mc_9
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 85
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13c84806f8a2fd041a49725377b939c0
+      internalID: 1687147928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m-bike-mc_10
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 85
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d30e6aa4bbb524d8c1f42a76f6b036
+      internalID: -873526647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m-bike-mc_11
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 86
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5880d68aeb2212c449b1f330bfced83f
+      internalID: -1079572800
       vertices: []
       indices: 
       edges: []
@@ -193,8 +361,16 @@ TextureImporter:
     nameFileIdTable:
       m-bike-mc_0: -860896293
       m-bike-mc_1: 1096947472
+      m-bike-mc_10: -873526647
+      m-bike-mc_11: -1079572800
       m-bike-mc_2: -775013442
       m-bike-mc_3: 577564479
+      m-bike-mc_4: 980589400
+      m-bike-mc_5: 71278655
+      m-bike-mc_6: -657004060
+      m-bike-mc_7: -1411619622
+      m-bike-mc_8: -934737289
+      m-bike-mc_9: 1687147928
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         speedMultiplier = 1f;
         if (isSpeedBoosted)
-            speedMultiplier *= 1.75f;
+            speedMultiplier *= 2f;
         if (isSprinting)
             speedMultiplier *= 1.5f;
     }
