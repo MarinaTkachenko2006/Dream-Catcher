@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1866110865}
   SFXSource: {fileID: 701551344}
-  background: {fileID: 8300000, guid: 21067eedbd40a36489de4b61d01fbb22, type: 3}
+  background: {fileID: 8300000, guid: 8a4ce50f2f8532b40b4e77a12db918ab, type: 3}
   steps: {fileID: 8300000, guid: 70b3358bd6c180c45a04216c8f895d9d, type: 3}
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
   click: {fileID: 0}
@@ -726,7 +726,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.202
-  m_Pitch: 0.44
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0

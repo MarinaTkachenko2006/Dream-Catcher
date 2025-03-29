@@ -98,6 +98,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.currentMP -= 10;
         playerHUD.SetMP(playerUnit.currentMP);
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+        // audioManager.PlaySFX(audioManager.boom);
 
         if (isDead)
         {
@@ -122,6 +123,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.currentMP -= 10;
         playerHUD.SetMP(playerUnit.currentMP);
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage * 100);
+        // audioManager.PlaySFX(audioManager.boom);
 
         if (isDead)
         {
