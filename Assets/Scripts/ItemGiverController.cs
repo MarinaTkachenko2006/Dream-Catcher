@@ -6,7 +6,7 @@ public class ItemGiverController : MonoBehaviour, Interactable
 {
     [SerializeField] Dialog dialog1;
     [SerializeField] Dialog dialog2;
-    public string ItemToGive;
+    public Item itemToGive;
     public bool itemIsGiven = false;
     AudioManager audioManager;
 
@@ -20,12 +20,17 @@ public class ItemGiverController : MonoBehaviour, Interactable
         {
             StartCoroutine(InteractRoutine());
         }
+        else
+        {
+            Debug.Log("Предмет уже получен.");
+        }
     }
 
     IEnumerator InteractRoutine()
     {
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog1));
         audioManager.PlaySFX(audioManager.item);
+        InventoryManager.Instance.AddItem(itemToGive);
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog2));
         itemIsGiven = true;
     }
