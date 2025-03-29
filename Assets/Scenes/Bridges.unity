@@ -504,7 +504,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.034727693, y: -0.07069492}
+  m_Offset: {x: -0.0105752945, y: -0.0030670166}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -515,7 +515,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.777302, y: 0.40964317}
+  m_Size: {x: 1.0188284, y: 0.93133926}
   m_EdgeRadius: 0
 --- !u!212 &317882956
 SpriteRenderer:
@@ -4649,6 +4649,7 @@ MonoBehaviour:
   steps: {fileID: 8300000, guid: 70b3358bd6c180c45a04216c8f895d9d, type: 3}
   doors: {fileID: 0}
   click: {fileID: 0}
+  item: {fileID: 8300000, guid: e168926ad99ba3c4fb79d485a5b43632, type: 3}
 --- !u!4 &773149782
 Transform:
   m_ObjectHideFlags: 0
@@ -17354,7 +17355,7 @@ GameObject:
   - component: {fileID: 1733030888}
   - component: {fileID: 1733030891}
   - component: {fileID: 1733030890}
-  - component: {fileID: 1733030892}
+  - component: {fileID: 1733030893}
   m_Layer: 9
   m_Name: fishing-mc
   m_TagString: Untagged
@@ -17501,7 +17502,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7319317, y: 0.93115664}
   m_EdgeRadius: 0
---- !u!114 &1733030892
+--- !u!114 &1733030893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17510,10 +17511,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1733030887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac109e28cbf4b3e4caf3e8a7aef2d730, type: 3}
+  m_Script: {fileID: 11500000, guid: d68656773987e5a4184c61ac8cb0b2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog:
+  dialog1:
     lines:
     - "*\u0412\u044B \u0447\u0443\u0432\u0441\u0442\u0432\u0443\u0435\u0442\u0435,
       \u043A\u0430\u043A \u0432\u0430\u0441 \u043F\u0440\u0438\u044F\u0442\u043D\u043E
@@ -17524,8 +17525,12 @@ MonoBehaviour:
       \u0442\u043E\u043C, \u0447\u0442\u043E \u0432\u044B \u043A\u043E\u0433\u0434\u0430
       \u0445\u043E\u0442\u0435\u043B\u0438 \u0443\u0437\u043D\u0430\u0442\u044C,
       \u043D\u043E \u0442\u0430\u043A \u0438 \u043D\u0435 \u0443\u0437\u043D\u0430\u043B\u0438*"
+  dialog2:
+    lines:
     - "*\u041F\u043E\u043B\u0443\u0447\u0435\u043D \u043F\u0440\u0435\u0434\u043C\u0435\u0442
       \"\u0423\u0434\u043E\u0447\u043A\u0430\"*"
+  ItemToGive: 
+  itemIsGiven: 0
 --- !u!1 &1743923200
 GameObject:
   m_ObjectHideFlags: 0

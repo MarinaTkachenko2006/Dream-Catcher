@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip steps;
     public AudioClip doors;
     public AudioClip click;
+    public AudioClip item;
 
     private void Start()
     {

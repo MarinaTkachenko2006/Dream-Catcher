@@ -38,10 +38,10 @@ public class DialogManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         OnShowDialog?.Invoke();
         this.dialog = dialog;
+        currentLine = 0;
         dialogBox.SetActive(true);
-        typingCoroutine = StartCoroutine(TypeDialog(dialog.Lines[0]));
-
-        yield return new WaitUntil(() => !IsTyping); // ждём пока не допечатается текст
+        typingCoroutine = StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+        yield return new WaitUntil(() => dialogBox.activeSelf == false);
 
         IsDialogFinished = true;
     }

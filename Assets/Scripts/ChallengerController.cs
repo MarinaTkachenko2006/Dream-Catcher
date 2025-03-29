@@ -25,14 +25,10 @@ public class ChallengerController : MonoBehaviour, Interactable
 
     private IEnumerator StartBattleAfterDialog(Dialog dialog, GameObject enemyPrefab)
     {
+        // Ждем, пока полностью завершится диалог (игрок сам нажал E для закрытия)
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog));
-        yield return StartCoroutine(DialogManager.Instance.WaitForDialogToEnd());
 
-        GameController.Instance.SetState(GameState.BattleDialog);
-
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
-        Debug.Log($"Имя врага в контроллере 2: {enemyPrefab.name}");
-
+        // После закрытия диалога сразу запускаем битву
         BattleLoader.Instance.StartBattle(enemyPrefab);
         GameController.Instance.SetState(GameState.Battle);
     }
