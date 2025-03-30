@@ -43,8 +43,6 @@ public class InventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        itemsContainer = inventoryPanel.transform.Find("InventoryContent");
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -53,6 +51,19 @@ public class InventoryUI : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        if (inventoryPanel != null)
+        {
+            bool wasActive = inventoryPanel.activeSelf;
+            inventoryPanel.SetActive(true);
+            itemsContainer = inventoryPanel.transform.Find("InventoryContent");
+            inventoryPanel.SetActive(wasActive);
+
+            if (itemsContainer == null)
+            {
+                Debug.LogError("InventoryContent не найден!");
+            }
+        }
     }
 
     void OnEnable()
@@ -67,17 +78,12 @@ public class InventoryUI : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        bool wasActive = inventoryPanel.activeSelf;
-        inventoryPanel.SetActive(true);
-
-        itemsContainer = inventoryPanel.transform.Find("InventoryContent");
-        
-        inventoryPanel.SetActive(wasActive);
-
-        if (itemsContainer == null)
+        if (itemsContainer == null && inventoryPanel != null)
         {
-            Debug.LogError("ItemsContent не найден в панели инвентаря!");
-            return;
+            bool wasActive = inventoryPanel.activeSelf;
+            inventoryPanel.SetActive(true);
+            itemsContainer = inventoryPanel.transform.Find("InventoryContent");
+            inventoryPanel.SetActive(wasActive);
         }
 
         UpdateInventoryUI();
@@ -95,6 +101,12 @@ public class InventoryUI : MonoBehaviour
         if (InventoryManager.Instance == null)
         {
             Debug.LogError("InventoryManager не инициализирован!");
+            return;
+        }
+
+        if (itemSlotPrefab == null)
+        {
+            Debug.LogError("ItemSlotPrefab не назначен!");
             return;
         }
 
@@ -116,17 +128,26 @@ public class InventoryUI : MonoBehaviour
         {
             GameObject slot = Instantiate(itemSlotPrefab, itemsContainer);
             Button button = slot.GetComponent<Button>();
-            Image icon = slot.transform.Find("Icon").GetComponent<Image>(); // ищем иконку
-            Image highlight = slot.transform.Find("HighlightFrame")?.GetComponent<Image>(); // рамка
+
+            Transform iconTransform = slot.transform.Find("Icon");
+            if (iconTransform == null)
+            {
+                Debug.LogError("Icon не найден в префабе!");
+                continue;
+            }
+            Image icon = slot.transform.Find("Icon")?.GetComponent<Image>();
+
+            Transform highlightTransform = slot.transform.Find("HighlightFrame");
+            Image highlight = slot.transform.Find("HighlightFrame")?.GetComponent<Image>();
 
             if (icon == null || highlight == null)
             {
-                Debug.LogError("Не найдены иконка или рамка в префабе слота!");
+                Debug.LogError("Не найдены иконка или рамка в префабе!");
                 continue;
             }
 
             icon.sprite = collectedItems[i].icon;
-            int index = i; // для замыкания в лямбде
+            int index = i;
 
             button.onClick.AddListener(() => SelectItem(index));
             itemSlots.Add(button);
