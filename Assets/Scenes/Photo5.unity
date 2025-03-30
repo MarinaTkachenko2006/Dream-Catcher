@@ -622,7 +622,7 @@ MonoBehaviour:
     lines:
     - "*\u041F\u043E\u043B\u0443\u0447\u0435\u043D \u043F\u0440\u0435\u0434\u043C\u0435\u0442:
       \u041A\u0430\u043C\u0435\u0440\u0430*"
-  ItemToGive: 
+  itemToGive: {fileID: 11400000, guid: c95e6ed2a4c2a904bb56e94e39e1b721, type: 2}
   itemIsGiven: 0
 --- !u!1 &1090973125
 GameObject:
@@ -2386,6 +2386,7 @@ MonoBehaviour:
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
   click: {fileID: 0}
   item: {fileID: 8300000, guid: e168926ad99ba3c4fb79d485a5b43632, type: 3}
+  boom: {fileID: 0}
 --- !u!4 &1646280138
 Transform:
   m_ObjectHideFlags: 0

@@ -370,6 +370,7 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   lastScene: 
   loadingFromBattle: 0
+  enemyPrefab: {fileID: 0}
 --- !u!4 &204173302
 Transform:
   m_ObjectHideFlags: 0
@@ -1617,6 +1618,8 @@ MonoBehaviour:
   steps: {fileID: 0}
   doors: {fileID: 0}
   click: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
+  item: {fileID: 0}
+  boom: {fileID: 0}
 --- !u!4 &683085274
 Transform:
   m_ObjectHideFlags: 0
