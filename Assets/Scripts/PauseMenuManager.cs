@@ -64,6 +64,15 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (GameController.Instance != null)
+            {
+                GameState current = GameController.Instance.CurrentState;
+                if (current == GameState.Battle || current == GameState.BattleDialog || current == GameState.Dialog)
+                {
+                    return;
+                }
+            }
+
             string currentScene = SceneManager.GetActiveScene().name;
             if (currentScene != "MainMenu") // нет паузы в главном меню
             {
