@@ -40,7 +40,7 @@ public class BattleSystem : MonoBehaviour
         GameObject enemyGO = Instantiate(BattleLoader.Instance.enemyPrefab, enemyBattleStation);
         enemyUnit = enemyGO.GetComponent<EnemyBattleUnit>();
 
-        ActivateBackground(enemyUnit.location);
+        // ActivateBackground(enemyUnit.location); // пока не надо
 
         dialogueText.text = enemyUnit.introText;
 
@@ -65,7 +65,7 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = "Вы проиграли.";
             StartCoroutine(ExitBattle(false));
         }
-        ActivateBackground("");
+        // ActivateBackground("");
     }
     IEnumerator ExitBattle(bool won)
     {
@@ -98,7 +98,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.currentMP -= 10;
         playerHUD.SetMP(playerUnit.currentMP);
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
-        // audioManager.PlaySFX(audioManager.boom);
+        audioManager.PlaySFX(audioManager.attack);
 
         if (isDead)
         {
@@ -123,7 +123,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.currentMP -= 10;
         playerHUD.SetMP(playerUnit.currentMP);
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage * 100);
-        // audioManager.PlaySFX(audioManager.boom);
+        audioManager.PlaySFX(audioManager.boom);
 
         if (isDead)
         {
@@ -152,6 +152,7 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetHP(playerUnit.currentHP);
         playerHUD.SetMP(playerUnit.currentMP);
         dialogueText.text = "Вы восстановили силы";
+        audioManager.PlaySFX(audioManager.heal);
 
         yield return new WaitForSeconds(2f);
 
@@ -167,6 +168,7 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetHP(playerUnit.currentHP);
         playerHUD.SetMP(playerUnit.currentMP);
         dialogueText.text = "Вы привели рассудок в порядок";
+        audioManager.PlaySFX(audioManager.heal);
 
         yield return new WaitForSeconds(2f);
 
@@ -207,7 +209,7 @@ public class BattleSystem : MonoBehaviour
     }
     public void OnAttackButton()
     {
-        audioManager.PlaySFX(audioManager.click);
+        // audioManager.PlaySFX(audioManager.click);
         if (state != BattleState.PLAYERTURN)
             return;
 
