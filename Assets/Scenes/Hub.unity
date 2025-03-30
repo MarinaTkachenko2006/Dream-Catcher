@@ -946,7 +946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659146a2ca2f15247a22bca34baab99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: Highway1
+  levelToLoad: Highway v2
 --- !u!61 &972555157
 BoxCollider2D:
   m_ObjectHideFlags: 0
