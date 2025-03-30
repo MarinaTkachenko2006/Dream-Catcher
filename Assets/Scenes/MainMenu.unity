@@ -1620,6 +1620,9 @@ MonoBehaviour:
   click: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
   item: {fileID: 0}
   boom: {fileID: 0}
+  heal: {fileID: 0}
+  manaHeal: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!4 &683085274
 Transform:
   m_ObjectHideFlags: 0
@@ -2610,7 +2613,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.759
   m_Pitch: 1
   Loop: 0
   Mute: 0

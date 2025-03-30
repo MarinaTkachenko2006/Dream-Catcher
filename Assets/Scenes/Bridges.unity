@@ -4329,17 +4329,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 401903942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac109e28cbf4b3e4caf3e8a7aef2d730, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fbca762a214eb74ca916a6a988f7aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog:
+  enemyPrefab: {fileID: 8862299579988464786, guid: 85d2f7ead6b58d041b0f37f0e1ecfc11, type: 3}
+  preBattleDialog:
     lines:
     - "\u0412\u043E\u0442 \u0431\u044B \u043F\u043E\u0431\u044B\u0432\u0430\u0442\u044C
       \u0432 \u041D\u043E\u0432\u043E\u043C \u041E\u0440\u043B\u0435\u0430\u043D\u0435..."
-    - "(\u25D5\u203F\u25D5)\t"
-    - "\u0669(\uFF61\u2022\u0301\u203F\u2022\u0300\uFF61)\u06F6"
-    - "\u250C\u2229\u2510(\u25E3_\u25E2)\u250C\u2229\u2510\t"
-    - "(\u256F_\u2570)"
+  postBattleDialog:
+    lines:
+    - "\u041C\u0435\u0447\u0442\u044B, \u043C\u0435\u0447\u0442\u044B..."
 --- !u!1 &459784716
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,7 +4529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8fcb84c7536064a9bf13d05926c6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1868397827}
+  target: {fileID: 0}
+  smoothing: 5
 --- !u!1 &740145339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4650,6 +4651,10 @@ MonoBehaviour:
   doors: {fileID: 0}
   click: {fileID: 0}
   item: {fileID: 8300000, guid: e168926ad99ba3c4fb79d485a5b43632, type: 3}
+  boom: {fileID: 0}
+  heal: {fileID: 0}
+  manaHeal: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!4 &773149782
 Transform:
   m_ObjectHideFlags: 0
@@ -17527,8 +17532,8 @@ MonoBehaviour:
       \u043D\u043E \u0442\u0430\u043A \u0438 \u043D\u0435 \u0443\u0437\u043D\u0430\u043B\u0438*"
   dialog2:
     lines:
-    - "*\u041F\u043E\u043B\u0443\u0447\u0435\u043D \u043F\u0440\u0435\u0434\u043C\u0435\u0442
-      \"\u0423\u0434\u043E\u0447\u043A\u0430\"*"
+    - "*\u041F\u043E\u043B\u0443\u0447\u0435\u043D \u043F\u0440\u0435\u0434\u043C\u0435\u0442:
+      \u0423\u0434\u043E\u0447\u043A\u0430*"
   ItemToGive: 
   itemIsGiven: 0
 --- !u!1 &1743923200
@@ -19427,6 +19432,16 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 50
       m_TileSpriteIndex: 17
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -26, y: 5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 39
+      m_TileSpriteIndex: 39
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -21812,6 +21827,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -40, y: 15, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 39
+      m_TileSpriteIndex: 39
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -38, y: 15, z: 0}
     second:
       serializedVersion: 2
@@ -22052,6 +22077,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -13, y: 16, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 39
+      m_TileSpriteIndex: 39
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -1, y: 16, z: 0}
     second:
       serializedVersion: 2
@@ -22077,6 +22112,16 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 45
       m_TileSpriteIndex: 9
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 21, y: 16, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 39
+      m_TileSpriteIndex: 39
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -26982,7 +27027,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 79306a4bf5eb9ab49909e480d6f58be1, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: bc4a5fca1761c994c868bb31d88dac05, type: 2}
-  - m_RefCount: 15
+  - m_RefCount: 19
     m_Data: {fileID: 11400000, guid: 6417354064a90654584a7ef58c50e444, type: 2}
   - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: 23685e6698b43cc47a3df694c676c80c, type: 2}
@@ -27153,7 +27198,7 @@ Tilemap:
     m_Data: {fileID: 1321374634, guid: 0ea1215d336e33a47999911b042b8997, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -2050609856, guid: 0ea1215d336e33a47999911b042b8997, type: 3}
-  - m_RefCount: 15
+  - m_RefCount: 19
     m_Data: {fileID: -83991627, guid: 0ea1215d336e33a47999911b042b8997, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -311530627, guid: 0ea1215d336e33a47999911b042b8997, type: 3}
@@ -27246,7 +27291,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 1176013953, guid: 0ea1215d336e33a47999911b042b8997, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 928
+  - m_RefCount: 932
     m_Data:
       e00: 1
       e01: 0
@@ -27265,7 +27310,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 928
+  - m_RefCount: 932
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
