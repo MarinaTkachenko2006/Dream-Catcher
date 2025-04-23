@@ -17534,6 +17534,8 @@ MonoBehaviour:
     lines:
     - "*\u041F\u043E\u043B\u0443\u0447\u0435\u043D \u043F\u0440\u0435\u0434\u043C\u0435\u0442:
       \u0423\u0434\u043E\u0447\u043A\u0430*"
+  dialogFirstItem:
+    lines: []
   ItemToGive: 
   itemIsGiven: 0
 --- !u!1 &1743923200
@@ -28089,7 +28091,7 @@ Transform:
   m_GameObject: {fileID: 2070914463}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.98, y: 15.53, z: 0}
+  m_LocalPosition: {x: -46.05, y: 15.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

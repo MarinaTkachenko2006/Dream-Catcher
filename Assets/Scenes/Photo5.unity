@@ -168,7 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8fcb84c7536064a9bf13d05926c6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  target: {fileID: 0}
+  smoothing: 5
 --- !u!81 &203420046
 AudioListener:
   m_ObjectHideFlags: 0
@@ -622,6 +623,19 @@ MonoBehaviour:
     lines:
     - "*\u041F\u043E\u043B\u0443\u0447\u0435\u043D \u043F\u0440\u0435\u0434\u043C\u0435\u0442:
       \u041A\u0430\u043C\u0435\u0440\u0430*"
+  dialogFirstItem:
+    lines:
+    - "*\u041F\u043E\u0437\u0434\u0440\u0430\u0432\u043B\u044F\u0435\u043C, \u0432\u044B
+      \u043D\u0430\u0448\u043B\u0438 \u0441\u0432\u043E\u0439 \u043F\u0435\u0440\u0432\u044B\u0439
+      \u043F\u0440\u0435\u0434\u043C\u0435\u0442.*"
+    - "*\u0412\u0430\u0448\u0430 \u043E\u0441\u043D\u043E\u0432\u043D\u0430\u044F
+      \u0446\u0435\u043B\u044C \u043D\u0430 \u043B\u043E\u043A\u0430\u0446\u0438\u0438
+      \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0430. \u0415\u0441\u043B\u0438
+      \u0445\u043E\u0442\u0438\u0442\u0435, \u043C\u043E\u0436\u0435\u0442\u0435
+      \u0435\u0449\u0451 \u043D\u0435\u043C\u043D\u043E\u0433\u043E \u043F\u043E\u0445\u043E\u0434\u0438\u0442\u044C
+      \u0437\u0434\u0435\u0441\u044C, \u043B\u0438\u0431\u043E \u043C\u043E\u0436\u0435\u0442\u0435
+      \u0442\u0435\u043B\u0435\u043F\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F
+      \u0432 \u043C\u0435\u0436\u0434\u0443\u0441\u043D\u043E\u0432\u044C\u0435.*"
   ItemToGive: 
   itemIsGiven: 0
 --- !u!1 &1090973125
@@ -2386,6 +2400,10 @@ MonoBehaviour:
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
   click: {fileID: 0}
   item: {fileID: 8300000, guid: e168926ad99ba3c4fb79d485a5b43632, type: 3}
+  boom: {fileID: 0}
+  heal: {fileID: 0}
+  manaHeal: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!4 &1646280138
 Transform:
   m_ObjectHideFlags: 0

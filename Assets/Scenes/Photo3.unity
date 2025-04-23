@@ -553,6 +553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Photo4
+  direction: {x: 0, y: 1}
+  teleportDuration: 1
 --- !u!61 &642757305
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2159,6 +2161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 3
   isSpeedBoosted: 0
+  isTeleporting: 0
   invisibleWallsLayer:
     serializedVersion: 2
     m_Bits: 128
