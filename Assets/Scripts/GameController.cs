@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
     public static GameController Instance { get; private set; }
-    GameState state;
+    public GameState state;
     public GameState CurrentState { get { return state; } }
     private void Awake()
     {

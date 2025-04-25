@@ -553,8 +553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Photo4
-  direction: {x: 0, y: 1}
-  teleportDuration: 1
+  direction: {x: 0, y: 0}
+  teleportDuration: 2
 --- !u!61 &642757305
 BoxCollider2D:
   m_ObjectHideFlags: 0
