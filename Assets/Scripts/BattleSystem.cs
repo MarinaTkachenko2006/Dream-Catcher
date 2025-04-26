@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+
+public enum EnemyActionType { BasicAttack, StrongAttack, Heal, Defend, BuffAttack }
 public class BattleSystem : MonoBehaviour
 {
     public GameObject playerPrefab;
@@ -176,22 +178,38 @@ public class BattleSystem : MonoBehaviour
     }
 
 
-
-
-    // логика поведения врага в битве
     IEnumerator EnemyTurn()
     {
-        dialogueText.text = enemyUnit.unitName + " атакует!";
-
+        dialogueText.text = enemyUnit.unitName + " готовится к действию...";
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+        EnemyAction selectedAction = ChooseEnemyAction();
 
-        playerHUD.SetHP(playerUnit.currentHP);
+        switch (selectedAction.actionType)
+        {
+            case EnemyActionType.BasicAttack:
+                yield return StartCoroutine(EnemyBasicAttack(selectedAction));
+                break;
 
-        yield return new WaitForSeconds(1f);
+            case EnemyActionType.StrongAttack:
+                yield return StartCoroutine(EnemyStrongAttack(selectedAction));
+                break;
 
-        if (isDead)
+            case EnemyActionType.Heal:
+                yield return StartCoroutine(EnemyHeal(selectedAction));
+                break;
+
+            case EnemyActionType.Defend:
+                yield return StartCoroutine(EnemyDefend(selectedAction));
+                break;
+
+            case EnemyActionType.BuffAttack:
+                yield return StartCoroutine(EnemyBuffAttack(selectedAction));
+                break;
+        }
+        enemyUnit.ProcessBuffs();
+
+        if (playerUnit.currentHP <= 0)
         {
             state = BattleState.LOST;
             EndBattle();
@@ -201,8 +219,22 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
             PlayerTurn();
         }
-
     }
+
+    private EnemyAction ChooseEnemyAction()
+    {
+        List<EnemyAction> weightedActions = new List<EnemyAction>();
+        foreach (var action in enemyUnit.possibleActions)
+        {
+            for (int i = 0; i < action.chance; i++)
+            {
+                weightedActions.Add(action);
+            }
+        }
+        int randomIndex = Random.Range(0, weightedActions.Count);
+        return weightedActions[randomIndex];
+    }
+
     void PlayerTurn()
     {
         dialogueText.text = "Выберите действие:";
@@ -237,6 +269,60 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
         StartCoroutine(PlayerRestoreMana());
+    }
+
+    IEnumerator EnemyBasicAttack(EnemyAction action)
+    {
+        int damage = Random.Range(action.minDamage, action.maxDamage + 1) + enemyUnit.attackBuff;
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        yield return new WaitForSeconds(1f);
+
+        bool isDead = playerUnit.TakeDamage(damage);
+        playerHUD.SetHP(playerUnit.currentHP);
+        audioManager.PlaySFX(audioManager.attack);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator EnemyStrongAttack(EnemyAction action)
+    {
+        int damage = Random.Range(action.minDamage, action.maxDamage + 1) + enemyUnit.attackBuff;
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        yield return new WaitForSeconds(1f);
+
+        bool isDead = playerUnit.TakeDamage(Mathf.RoundToInt(damage * 1.5f) - enemyUnit.currentDefense);
+        playerHUD.SetHP(playerUnit.currentHP);
+        // audioManager.PlaySFX(audioManager.strongAttack);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator EnemyHeal(EnemyAction action)
+    {
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        enemyUnit.Heal(action.healAmount);
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        audioManager.PlaySFX(audioManager.heal);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator EnemyDefend(EnemyAction action)
+    {
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        enemyUnit.ApplyDefenseBuff(action.healAmount, action.buffDuration);
+        // audioManager.PlaySFX(audioManager.shield);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator EnemyBuffAttack(EnemyAction action)
+    {
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        enemyUnit.ApplyAttackBuff(action.healAmount, action.buffDuration);
+        // audioManager.PlaySFX(audioManager.powerUp);
+
+        yield return new WaitForSeconds(1f);
     }
 
 }
