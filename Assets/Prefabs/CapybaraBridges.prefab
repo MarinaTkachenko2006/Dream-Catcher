@@ -141,3 +141,21 @@ MonoBehaviour:
   SecretePunchDamage: 40
   SecretePunchText: "\u041A\u0430\u043F\u0438\u0431\u0430\u0440\u0430 \u043D\u0435\u0440\u0432\u043D\u043E
     \u0436\u0443\u0435\u0442 \u0442\u0440\u0430\u0432\u0443"
+  possibleActions:
+  - actionType: 0
+    chance: 50
+    minDamage: 5
+    maxDamage: 20
+    healAmount: 0
+    buffDuration: 0
+    description: 
+  - actionType: 1
+    chance: 29
+    minDamage: 1
+    maxDamage: 50
+    healAmount: 0
+    buffDuration: 0
+    description: 
+  currentDefense: 0
+  attackBuff: 0
+  buffDuration: 0

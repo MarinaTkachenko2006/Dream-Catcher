@@ -147,6 +147,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerHeal()
     {
+        playerUnit.currentMP -= 10;
         audioManager.PlaySFX(audioManager.click);
         playerUnit.Heal(20);
         state = BattleState.ENEMYTURN;
@@ -239,11 +240,25 @@ public class BattleSystem : MonoBehaviour
     {
         dialogueText.text = "Выберите действие:";
     }
+
+    IEnumerator ShowManaWarning()
+    {
+        string originalText = dialogueText.text;
+        dialogueText.text = "Недостаточно маны!";
+        yield return new WaitForSeconds(1.5f);
+        dialogueText.text = originalText;
+    }
+
     public void OnAttackButton()
     {
-        // audioManager.PlaySFX(audioManager.click);
         if (state != BattleState.PLAYERTURN)
             return;
+
+        if (playerUnit.currentMP < 10)
+        {
+            StartCoroutine(ShowManaWarning());
+            return;
+        }
 
         StartCoroutine(PlayerAttack());
     }
@@ -253,6 +268,12 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
 
+        if (playerUnit.currentMP < 15)
+        {
+            StartCoroutine(ShowManaWarning());
+            return;
+        }
+
         StartCoroutine(PlayerStrongAttack());
     }
     public void OnHealButton()
@@ -260,6 +281,11 @@ public class BattleSystem : MonoBehaviour
         audioManager.PlaySFX(audioManager.click);
         if (state != BattleState.PLAYERTURN)
             return;
+        if (playerUnit.currentMP < 10)
+        {
+            StartCoroutine(ShowManaWarning());
+            return;
+        }
         StartCoroutine(PlayerHeal());
     }
 
