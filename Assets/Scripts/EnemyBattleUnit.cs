@@ -27,17 +27,17 @@ public class EnemyBattleUnit : BattleUnit
         buffDuration = duration;
     }
 
-    public void Heal(int amount)
-    {
-        currentHP = Mathf.Min(currentHP + amount, maxHP);
-    }
+    // public void Heal(int amount)
+    // {
+    //     currentHP = Mathf.Min(currentHP + amount, maxHP);
+    // }
 
     public void ProcessBuffs()
     {
-        if(buffDuration > 0)
+        if (buffDuration > 0)
         {
             buffDuration--;
-            if(buffDuration <= 0)
+            if (buffDuration <= 0)
             {
                 currentDefense = 0;
                 attackBuff = 0;

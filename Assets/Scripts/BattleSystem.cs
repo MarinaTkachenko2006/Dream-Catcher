@@ -165,7 +165,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerRestoreMana()
     {
         audioManager.PlaySFX(audioManager.click);
-        playerUnit.restoreMana(15);
+        playerUnit.restoreMana(35);
         state = BattleState.ENEMYTURN;
 
         playerHUD.SetHP(playerUnit.currentHP);

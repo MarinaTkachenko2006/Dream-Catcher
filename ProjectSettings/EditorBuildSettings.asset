@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Highway v2.unity
     guid: f5182b04c4b43454b89a8b50be3418a4
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: ce74d8a5b2064de4d90c7958b8d71a64
   m_configObjects: {}
