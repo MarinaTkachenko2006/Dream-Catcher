@@ -51,7 +51,8 @@ public class NovelManager : MonoBehaviour
 
     public void StartSequence(int playlistIndex)
     {
-        if (playlistIndex >= novelScenes.Length) return;
+        if (playlistIndex < 0 || playlistIndex >= novelScenes.Length)
+            return;
 
         currentPlaylistIndex = playlistIndex;
         currentSceneIndex = 0;
@@ -66,22 +67,30 @@ public class NovelManager : MonoBehaviour
 
     private IEnumerator PlayNextScene()
     {
-        novelText.text = "";
-        textPanel.SetActive(false);
+        // Защита от выхода за плейлисты
+        if (currentPlaylistIndex < 0 || currentPlaylistIndex >= novelScenes.Length)
+            yield break;
 
-        var currentSequence = novelScenes[currentPlaylistIndex].sequence;
+        var sequence = novelScenes[currentPlaylistIndex].sequence;
 
-        if (currentSceneIndex >= currentSequence.scenes.Length)
+        // Если сцены кончились — выходим в EndSequence
+        if (currentSceneIndex >= sequence.scenes.Length)
         {
             EndSequence();
             yield break;
         }
 
-        currentScene = currentSequence.scenes[currentSceneIndex];
+        // Берём текущую сцену и сбрасываем страницу
+        currentScene = sequence.scenes[currentSceneIndex];
         currentPageIndex = 0;
 
+        novelText.text = "";
+        textPanel.SetActive(false);
+
+        // Смена фона
         yield return StartCoroutine(ChangeBackground(currentScene.background));
 
+        // Старт текста
         textPanel.SetActive(true);
         typingCoroutine = StartCoroutine(TypeText(currentScene.pages[currentPageIndex]));
     }
@@ -101,29 +110,43 @@ public class NovelManager : MonoBehaviour
 
     private void Update()
     {
-        if (!textPanel.activeSelf) return;
+        if (!textPanel.activeSelf)
+            return;
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // Досрочно допечатываем, если печать ещё идёт
             if (isTyping)
             {
                 StopCoroutine(typingCoroutine);
                 novelText.text = currentScene.pages[currentPageIndex];
                 isTyping = false;
+                return;
+            }
+
+            // Идём к следующей странице
+            currentPageIndex++;
+
+            // Если есть ещё страницы в текущей сцене — печатаем их
+            if (currentPageIndex < currentScene.pages.Length)
+            {
+                typingCoroutine = StartCoroutine(TypeText(currentScene.pages[currentPageIndex]));
             }
             else
             {
-                currentPageIndex++;
-                var currentSequence = novelScenes[currentPlaylistIndex].sequence;
+                // Иначе переходим к следующей сцене
+                currentSceneIndex++;
 
-                if (currentPageIndex < currentScene.pages.Length)
+                // Проверяем, остались ли сцены в этой последовательности
+                var sequence = novelScenes[currentPlaylistIndex].sequence;
+                if (currentSceneIndex < sequence.scenes.Length)
                 {
-                    typingCoroutine = StartCoroutine(TypeText(currentScene.pages[currentPageIndex]));
+                    StartCoroutine(PlayNextScene());
                 }
                 else
                 {
-                    currentSceneIndex++;
-                    StartCoroutine(PlayNextScene());
+                    // Сцен больше нет — завершаем всю последовательность
+                    EndSequence();
                 }
             }
         }
@@ -133,9 +156,16 @@ public class NovelManager : MonoBehaviour
     {
         textPanel.SetActive(false);
         currentPlaylistIndex++;
-        if (currentPlaylistIndex < novelScenes.Length)
+        if (currentPlaylistIndex < novelScenes.Length && novelScenes[currentPlaylistIndex].playAutomatically)
         {
             StartSequence(currentPlaylistIndex);
+        }
+        else
+        {
+            InventoryManager.Instance.Reset();
+            BattleLoader.Instance.Reset();
+            LevelLoader.Instance.LoadLevel("MainMenu");
+            CheatManager.Instance.Reset();
         }
     }
 

@@ -8,18 +8,24 @@ public class ItemGiverController : MonoBehaviour, Interactable
     [SerializeField] Dialog dialog2;
     [SerializeField] private Dialog dialogFirstItem;
     public string ItemToGive;
-    public bool itemIsGiven = false;
+    //public bool itemIsGiven = false;
     AudioManager audioManager;
+    InventoryManager inventoryManager;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        inventoryManager = InventoryManager.Instance;
     }
     public void Interact()
     {
-        if (!itemIsGiven)
+        if (!inventoryManager.HasItem(ItemToGive))
         {
             StartCoroutine(InteractRoutine());
+        }
+        else
+        {
+            Debug.Log("Предмет уже получен");
         }
     }
 
@@ -28,10 +34,11 @@ public class ItemGiverController : MonoBehaviour, Interactable
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog1));
         audioManager.PlaySFX(audioManager.item);
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog2));
-        if (true)
+        if (inventoryManager.ItemsCount() == 0)
         {
             yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialogFirstItem));
         }
-        itemIsGiven = true;
+        inventoryManager.AddItem(ItemToGive);
+        //itemIsGiven = true;
     }
 }

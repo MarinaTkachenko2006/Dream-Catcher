@@ -110,4 +110,9 @@ public class BattleLoader : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    public void Reset()
+    {
+        defeatedEnemies.Clear();
+    }
 }

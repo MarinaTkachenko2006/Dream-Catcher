@@ -7,6 +7,7 @@ public class CheatManager : MonoBehaviour
 {
     public static CheatManager Instance;
     public bool isSpeedBoosted = false;
+    public bool hasAllItems = false;
     GameObject playerObject;
     void Awake()
     {
@@ -58,12 +59,29 @@ public class CheatManager : MonoBehaviour
         }
     }
 
+    public void GetAllItems()
+    {
+        InventoryManager.Instance.AddItem("Collar");
+        InventoryManager.Instance.AddItem("Rod");
+        InventoryManager.Instance.AddItem("?");
+        InventoryManager.Instance.AddItem("Camera");
+        hasAllItems = true;
+    }
+
     // метод применяет все включенные читы при смене сцены
     void ApplyCheats()
     {
         if (isSpeedBoosted)
         {
             ToggleSpeedBoost(isSpeedBoosted);
+        }
+    }
+
+    public void Reset()
+    {
+        if (isSpeedBoosted)
+        {
+            ToggleSpeedBoost(false);
         }
     }
 }
