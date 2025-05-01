@@ -13,18 +13,12 @@ public class NovelManager : MonoBehaviour
         public bool playAutomatically = true;
     }
 
-    [Header("Playlist")]
     [SerializeField] private NovelPlaylistItem[] novelScenes;
-
-    [Header("UI")]
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI novelText;
     [SerializeField] private GameObject textPanel;
-
-    [Header("Settings")]
     [SerializeField] private float lettersPerSecond = 30f;
 
-    // Добавляем объявление currentScene
     private NovelSequence.SceneData currentScene;
     private int currentPlaylistIndex = 0;
     private int currentSceneIndex = 0;
@@ -62,29 +56,32 @@ public class NovelManager : MonoBehaviour
         currentPlaylistIndex = playlistIndex;
         currentSceneIndex = 0;
         currentPageIndex = 0;
-        
+
         var sequence = novelScenes[playlistIndex].sequence;
         novelText.font = sequence.font;
         novelText.color = sequence.textColor;
-        
+
         StartCoroutine(PlayNextScene());
     }
 
     private IEnumerator PlayNextScene()
     {
+        novelText.text = "";
+        textPanel.SetActive(false);
+
         var currentSequence = novelScenes[currentPlaylistIndex].sequence;
-        
+
         if (currentSceneIndex >= currentSequence.scenes.Length)
         {
             EndSequence();
             yield break;
         }
 
-        // Инициализируем currentScene
         currentScene = currentSequence.scenes[currentSceneIndex];
         currentPageIndex = 0;
-        
+
         yield return StartCoroutine(ChangeBackground(currentScene.background));
+
         textPanel.SetActive(true);
         typingCoroutine = StartCoroutine(TypeText(currentScene.pages[currentPageIndex]));
     }
@@ -93,7 +90,7 @@ public class NovelManager : MonoBehaviour
     {
         isTyping = true;
         novelText.text = "";
-        
+
         foreach (char letter in text.ToCharArray())
         {
             novelText.text += letter;
@@ -111,7 +108,6 @@ public class NovelManager : MonoBehaviour
             if (isTyping)
             {
                 StopCoroutine(typingCoroutine);
-                // Используем объявленную currentScene
                 novelText.text = currentScene.pages[currentPageIndex];
                 isTyping = false;
             }
@@ -120,7 +116,7 @@ public class NovelManager : MonoBehaviour
                 currentPageIndex++;
                 var currentSequence = novelScenes[currentPlaylistIndex].sequence;
 
-                if (currentPageIndex < currentScene.pages.Length) // Исправлено
+                if (currentPageIndex < currentScene.pages.Length)
                 {
                     typingCoroutine = StartCoroutine(TypeText(currentScene.pages[currentPageIndex]));
                 }
@@ -145,24 +141,41 @@ public class NovelManager : MonoBehaviour
 
     private IEnumerator ChangeBackground(Sprite newBackground)
     {
+        if (textPanel.activeSelf)
+        {
+            yield return StartCoroutine(FadeText(1f, 0f, 0.2f));
+        }
         float fadeTime = 0.5f;
         CanvasGroup canvasGroup = backgroundImage.GetComponent<CanvasGroup>();
-        if (canvasGroup == null) canvasGroup = backgroundImage.gameObject.AddComponent<CanvasGroup>();
 
         while (canvasGroup.alpha > 0)
         {
             canvasGroup.alpha -= Time.deltaTime / fadeTime;
             yield return null;
         }
-
         backgroundImage.sprite = newBackground;
-
         while (canvasGroup.alpha < 1)
         {
             canvasGroup.alpha += Time.deltaTime / fadeTime;
             yield return null;
         }
+        yield return StartCoroutine(FadeText(0f, 1f, 0.3f));
     }
 
-    
+    private IEnumerator FadeText(float startAlpha, float endAlpha, float duration)
+    {
+        CanvasGroup textCanvasGroup = textPanel.GetComponent<CanvasGroup>();
+        if (!textCanvasGroup) textCanvasGroup = textPanel.AddComponent<CanvasGroup>();
+
+        float elapsed = 0;
+        while (elapsed < duration)
+        {
+            textCanvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        textCanvasGroup.alpha = endAlpha;
+    }
+
+
 }
