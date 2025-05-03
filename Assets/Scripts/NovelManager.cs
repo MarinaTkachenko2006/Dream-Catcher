@@ -67,30 +67,25 @@ public class NovelManager : MonoBehaviour
 
     private IEnumerator PlayNextScene()
     {
-        // Защита от выхода за плейлисты
         if (currentPlaylistIndex < 0 || currentPlaylistIndex >= novelScenes.Length)
             yield break;
 
         var sequence = novelScenes[currentPlaylistIndex].sequence;
 
-        // Если сцены кончились — выходим в EndSequence
         if (currentSceneIndex >= sequence.scenes.Length)
         {
             EndSequence();
             yield break;
         }
 
-        // Берём текущую сцену и сбрасываем страницу
         currentScene = sequence.scenes[currentSceneIndex];
         currentPageIndex = 0;
 
         novelText.text = "";
         textPanel.SetActive(false);
 
-        // Смена фона
         yield return StartCoroutine(ChangeBackground(currentScene.background));
 
-        // Старт текста
         textPanel.SetActive(true);
         typingCoroutine = StartCoroutine(TypeText(currentScene.pages[currentPageIndex]));
     }
@@ -113,9 +108,8 @@ public class NovelManager : MonoBehaviour
         if (!textPanel.activeSelf)
             return;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButton(0))
         {
-            // Досрочно допечатываем, если печать ещё идёт
             if (isTyping)
             {
                 StopCoroutine(typingCoroutine);
@@ -124,20 +118,15 @@ public class NovelManager : MonoBehaviour
                 return;
             }
 
-            // Идём к следующей странице
             currentPageIndex++;
 
-            // Если есть ещё страницы в текущей сцене — печатаем их
             if (currentPageIndex < currentScene.pages.Length)
             {
                 typingCoroutine = StartCoroutine(TypeText(currentScene.pages[currentPageIndex]));
             }
             else
             {
-                // Иначе переходим к следующей сцене
                 currentSceneIndex++;
-
-                // Проверяем, остались ли сцены в этой последовательности
                 var sequence = novelScenes[currentPlaylistIndex].sequence;
                 if (currentSceneIndex < sequence.scenes.Length)
                 {
@@ -145,7 +134,6 @@ public class NovelManager : MonoBehaviour
                 }
                 else
                 {
-                    // Сцен больше нет — завершаем всю последовательность
                     EndSequence();
                 }
             }

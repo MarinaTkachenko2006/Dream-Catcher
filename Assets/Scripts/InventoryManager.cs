@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // ВРЕМЕННЫЙ КЛАСС
 public class InventoryManager: MonoBehaviour
 {
     public static InventoryManager Instance;
+    public event UnityAction OnInventoryChanged;
+
     void Awake()
     {
         if (Instance == null)
@@ -23,6 +26,7 @@ public class InventoryManager: MonoBehaviour
     public void AddItem(string itemName)
     {
         items.Add(itemName);
+        OnInventoryChanged?.Invoke();
     }
 
     public int ItemsCount()
@@ -38,6 +42,7 @@ public class InventoryManager: MonoBehaviour
     public void Reset()
     {
         items.Clear();
+        OnInventoryChanged?.Invoke();
     }
 
 }

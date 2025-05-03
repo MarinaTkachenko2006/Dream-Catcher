@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: ce74d8a5b2064de4d90c7958b8d71a64
+  - enabled: 1
+    path: Assets/Scenes/ArtWorld.unity
+    guid: 3f80c56f92eb6b543bf715d988053210
   m_configObjects: {}
