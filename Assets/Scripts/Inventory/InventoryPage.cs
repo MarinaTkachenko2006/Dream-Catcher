@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,9 +20,14 @@ public class InventoryPage : MonoBehaviour
             InventoryItem item = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
             item.transform.SetParent(contentPanel);
             inventoryItems.Add(item);
+            item.OnItemClicked += HandleItemSelection;
         }
     }
 
+    private void HandleItemSelection(InventoryItem item)
+    {
+        Debug.Log(item.name);
+    }
 
     public void Show()
     {
