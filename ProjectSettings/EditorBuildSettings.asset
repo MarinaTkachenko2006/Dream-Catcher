@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Photo4.unity
     guid: 681bd92276bb965428dcf090208d86ff
   - enabled: 1
-    path: Assets/Scenes/Highway.unity
+    path: Assets/Scenes/Highway1.unity
     guid: c429af638a691ea4c952d0a4f9aadb67
   - enabled: 1
     path: Assets/Scenes/Photo5.unity
@@ -41,4 +41,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InsideForestHouse.unity
     guid: 83541a62c680a6744add542dc6a7c578
+  - enabled: 1
+    path: Assets/Scenes/Highway2.unity
+    guid: 88724bbee707973479de9256759356e0
+  - enabled: 1
+    path: Assets/Scenes/Highway v2.unity
+    guid: f5182b04c4b43454b89a8b50be3418a4
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: ce74d8a5b2064de4d90c7958b8d71a64
+  - enabled: 1
+    path: Assets/Scenes/ArtWorld.unity
+    guid: 3f80c56f92eb6b543bf715d988053210
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 56ccbac9ddb76b64a908a1834a8b1351
   m_configObjects: {}

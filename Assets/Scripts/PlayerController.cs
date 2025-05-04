@@ -100,7 +100,6 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.position = targetPos;
-
         isMoving = false;
     }
 
@@ -111,5 +110,11 @@ public class PlayerController : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    public void ResetMovement()
+    {
+        StopAllCoroutines();
+        isMoving = false;
     }
 }

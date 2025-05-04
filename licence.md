@@ -53,3 +53,51 @@ Froggo can be used however you want for your projects, whether personally, educa
    Source: https://duckhive.itch.io/froggo
    License: Not explicitly stated. Described on the source page as "
 Froggo can be used however you want for your projects, whether personally, educationally, or commercially."
+
+11. Asset Name: "DRIZZLE RAIN - royalty free sound effect"
+   Author: Giorgio Magarò
+   Source: https://youtu.be/fQaLtT1zfsc?si=JYc9UGQbfyyScEku
+   License: Not explicitly stated.
+   Described on the source page as "It's royalty free! For commercial/uncommercial use.
+   No credits needed."
+
+12. Asset Name: "Press Play 👾 (16-Bit Arcade No Copyright Music)"
+   Author: Panda Beats - No Copyright Music
+   Source: https://youtu.be/Wth5wynwxq0?si=yZOnlC9gX72HNPzj
+   License: Not explicitly stated.
+   Described on the source page as "Copyright free music for streaming on Twitch, Youtube and everywhere else."
+
+13. Asset Name: "2013-01-01,比布駅"
+   Author: rapidliner
+   Source: https://flic.kr/p/e9mJv9
+   License: CC BY-NC-SA 2.0
+
+14. Asset Name: "2017-02-18,北海道開拓の村,札幌市厚別区"
+   Author: rapidliner
+   Source: https://flic.kr/p/SgpYR5
+   License: CC BY-NC-SA 2.0
+
+15. Asset Name: "2017-02-18,北海道開拓の村,札幌市厚別区"
+   Author: rapidliner
+   Source: https://flic.kr/p/R64UUH
+   License: CC BY-NC-SA 2.0
+
+16. Asset Name: "2013-01-01,比布駅"
+   Author: rapidliner
+   Source: https://flic.kr/p/e9mHZE
+   License: CC BY-NC-SA 2.0
+
+17. Asset Name: "2013-01-01,比布駅"
+   Author: rapidliner
+   Source: https://flic.kr/p/e9mJv9
+   License: CC BY-NC-SA 2.0
+
+18. Asset Name: "2013-01-01,滝川市,北海道"
+   Author: rapidliner
+   Source: https://flic.kr/p/e9m752
+   License: CC BY-NC-SA 2.0
+
+19. Asset Name: "2013-01-01,セイコーマート,滝川市,北海道"
+   Author: rapidliner
+   Source: https://flic.kr/p/e9ssuC
+   License: CC BY-NC-SA 2.0

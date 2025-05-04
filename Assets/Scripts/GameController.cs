@@ -8,8 +8,10 @@ public enum GameState { FreeRoam, Dialog, Battle, BattleDialog }
 public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
+    public int gameStarts;
     public static GameController Instance { get; private set; }
-    GameState state;
+    public GameState state;
+    public GameState CurrentState { get { return state; } }
     private void Awake()
     {
         if (Instance == null)

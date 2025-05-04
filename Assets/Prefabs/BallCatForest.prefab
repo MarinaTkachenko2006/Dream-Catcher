@@ -109,14 +109,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8862299579988464786}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.9999905, z: -0, w: -0.00436318}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6908948485570237898}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.5, z: 0}
 --- !u!114 &5721384228724308927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,3 +142,31 @@ MonoBehaviour:
   SecretePunchText: "\u0414\u0436\u043E \u043A\u0438\u0434\u0430\u0435\u0442 \u0432
     \u0442\u0435\u0431\u044F \u043A\u0430\u043A\u0443\u044E-\u0442\u043E \u0441\u0442\u0440\u0430\u043D\u043D\u0443\u044E
     \u043A\u043E\u043B\u0431\u0443"
+  possibleActions:
+  - actionType: 0
+    chance: 50
+    minDamage: 15
+    maxDamage: 15
+    healAmount: 0
+    buffDuration: 0
+    description: "\u0430\u0442\u0430\u043A\u0443\u0435\u0442."
+  - actionType: 1
+    chance: 30
+    minDamage: 20
+    maxDamage: 22
+    healAmount: 0
+    buffDuration: 0
+    description: "\u043A\u0438\u0434\u0430\u0435\u0442 \u0432 \u0442\u0435\u0431\u044F
+      \u043A\u0430\u043A\u0443\u044E-\u0442\u043E \u0437\u0430\u0433\u0430\u0434\u043E\u0447\u043D\u0443\u044E
+      \u043A\u043E\u043B\u0431\u0443."
+  - actionType: 2
+    chance: 38
+    minDamage: 0
+    maxDamage: 0
+    healAmount: 10
+    buffDuration: 0
+    description: "\u0432\u044B\u043F\u0438\u0432\u0430\u0435\u0442 \u0441\u043E\u0434\u0435\u0440\u0436\u0438\u043C\u043E\u0435
+      \u0437\u0430\u0433\u0430\u0434\u043E\u0447\u043D\u043E\u0439 \u043F\u0440\u043E\u0431\u0438\u0440\u043A\u0438."
+  currentDefense: 0
+  attackBuff: 0
+  buffDuration: 0

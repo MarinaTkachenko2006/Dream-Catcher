@@ -12,12 +12,12 @@ public class ItemGiverController : MonoBehaviour, Interactable
     public string ItemToGive;
     //public bool itemIsGiven = false;
     AudioManager audioManager;
-    InventoryManager_1 inventoryManager;
+    InventoryManager inventoryManager;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        inventoryManager = InventoryManager_1.Instance;
+        inventoryManager = InventoryManager.Instance;
     }
     public void Interact()
     {
@@ -27,7 +27,7 @@ public class ItemGiverController : MonoBehaviour, Interactable
         }
         else
         {
-            Debug.Log("Предмет уже получен");
+            Debug.Log("РџСЂРµРґРјРµС‚ СѓР¶Рµ РїРѕР»СѓС‡РµРЅ");
         }
     }
 
@@ -42,7 +42,7 @@ public class ItemGiverController : MonoBehaviour, Interactable
         }
         else if (inventoryManager.ItemsCount() == 3)
         {
-            dialogLastItem.Lines[0] = "*Вы почувствовали, что ранее запертая дверь в междусновье открылась.*";
+            dialogLastItem.Lines[0] = "*Р’С‹ РїРѕС‡СѓРІСЃС‚РІРѕРІР°Р»Рё, С‡С‚Рѕ СЂР°РЅРµРµ Р·Р°РїРµСЂС‚Р°СЏ РґРІРµСЂСЊ РІ РјРµР¶РґСѓСЃРЅРѕРІСЊРµ РѕС‚РєСЂС‹Р»Р°СЃСЊ.*";
             yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialogLastItem));
         }
         inventoryManager.AddItem(ItemToGive);

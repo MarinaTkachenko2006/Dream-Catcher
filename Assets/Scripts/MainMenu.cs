@@ -10,7 +10,17 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         audioManager.PlaySFX(audioManager.click);
-        LevelLoader.Instance.LoadLevel("Hub");
+        if (GameController.Instance.gameStarts > 0)
+        {
+            GameController.Instance.gameStarts++;
+            LevelLoader.Instance.LoadLevel("Hub");
+        }
+
+        else
+        {
+            GameController.Instance.gameStarts++;
+            LevelLoader.Instance.LoadLevel("Tutorial");
+        }
     }
 
     public void GoToSettingsMenu()

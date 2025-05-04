@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 3
   isSpeedBoosted: 0
+  isTeleporting: 0
   invisibleWallsLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -520,6 +521,11 @@ MonoBehaviour:
   steps: {fileID: 8300000, guid: 70b3358bd6c180c45a04216c8f895d9d, type: 3}
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
   click: {fileID: 0}
+  item: {fileID: 0}
+  boom: {fileID: 0}
+  heal: {fileID: 0}
+  manaHeal: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!4 &757491523
 Transform:
   m_ObjectHideFlags: 0
@@ -628,7 +634,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8fcb84c7536064a9bf13d05926c6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  target: {fileID: 0}
+  smoothing: 5
 --- !u!81 &992914967
 AudioListener:
   m_ObjectHideFlags: 0
@@ -734,6 +741,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Photo3
+  direction: {x: 0, y: 0}
+  teleportDuration: 1
 --- !u!61 &1019670436
 BoxCollider2D:
   m_ObjectHideFlags: 0

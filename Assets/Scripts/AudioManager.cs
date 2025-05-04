@@ -13,6 +13,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip click;
     public AudioClip item;
     public AudioClip boom;
+    public AudioClip heal;
+    public AudioClip manaHeal;
+    public AudioClip attack;
 
     private void Start()
     {

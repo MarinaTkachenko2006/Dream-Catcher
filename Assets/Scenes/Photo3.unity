@@ -317,9 +317,11 @@ PolygonCollider2D:
       - {x: -2.6932116, y: 2.9706933}
       - {x: -12.15112, y: 4.0608397}
       - {x: -15.365717, y: 2.8412952}
-      - {x: -14.956239, y: 1.1679372}
-      - {x: -14.973905, y: -1.8506962}
-      - {x: -12.741284, y: -1.796203}
+      - {x: -18.04435, y: 2.226718}
+      - {x: -16.377148, y: -0.13969493}
+      - {x: -14.868026, y: -1.8330498}
+      - {x: -13.455403, y: -2.572952}
+      - {x: -11.379516, y: -2.3690069}
       - {x: -6.668436, y: -1.8440214}
       - {x: 8.975634, y: -2.9652758}
       - {x: 8.713591, y: 0.61089367}
@@ -551,6 +553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Photo4
+  direction: {x: 0, y: 0}
+  teleportDuration: 2
 --- !u!61 &642757305
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -888,6 +892,56 @@ Tilemap:
   m_GameObject: {fileID: 787940721}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: 10, y: -5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 157
+      m_TileSpriteIndex: 157
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 10, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 157
+      m_TileSpriteIndex: 157
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 10, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 157
+      m_TileSpriteIndex: 157
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 10, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 157
+      m_TileSpriteIndex: 157
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 10, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 157
+      m_TileSpriteIndex: 157
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -1, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -993,6 +1047,16 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 158
       m_TileSpriteIndex: 158
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 10, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 157
+      m_TileSpriteIndex: 157
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1584,8 +1648,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: 7d4f61a5de5e9504b87395624aafd237, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 6
+    m_Data: {fileID: 11400000, guid: 1f5781852b55cd7438b6a2a1bfeef43f, type: 2}
   - m_RefCount: 22
     m_Data: {fileID: 11400000, guid: ac9cbbbf4f3c4d0488e409d830c5958c, type: 2}
   m_TileSpriteArray:
@@ -1903,12 +1967,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 10
     m_Data: {fileID: 1991568908, guid: 167274895284d214ba701b70c870a91f, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 6
+    m_Data: {fileID: 1512167973, guid: 167274895284d214ba701b70c870a91f, type: 3}
   - m_RefCount: 22
     m_Data: {fileID: -575525612, guid: 167274895284d214ba701b70c870a91f, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 38
+  - m_RefCount: 44
     m_Data:
       e00: 1
       e01: 0
@@ -1927,7 +1991,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 38
+  - m_RefCount: 44
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -2097,6 +2161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 3
   isSpeedBoosted: 0
+  isTeleporting: 0
   invisibleWallsLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -2221,9 +2286,9 @@ PolygonCollider2D:
       - {x: -7.1421995, y: 1.6864374}
       - {x: -11.7823105, y: -2.293309}
       - {x: -9.947958, y: -4.2857447}
-      - {x: -9.150999, y: -4.2857075}
-      - {x: -8.50477, y: -1.3951182}
-      - {x: -3.1738734, y: -1.898661}
+      - {x: -7.3150616, y: -4.4317484}
+      - {x: -7.7344494, y: -2.283521}
+      - {x: -3.4799418, y: -2.4826012}
       - {x: 3.2300448, y: -2.7989626}
       - {x: 3.311368, y: -0.24752903}
       - {x: 3.306983, y: 0.1840477}
@@ -2615,7 +2680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8fcb84c7536064a9bf13d05926c6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  target: {fileID: 0}
+  smoothing: 5
 --- !u!81 &2000962789
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2725,6 +2791,11 @@ MonoBehaviour:
   steps: {fileID: 8300000, guid: 70b3358bd6c180c45a04216c8f895d9d, type: 3}
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
   click: {fileID: 0}
+  item: {fileID: 0}
+  boom: {fileID: 0}
+  heal: {fileID: 0}
+  manaHeal: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!4 &2067871515
 Transform:
   m_ObjectHideFlags: 0

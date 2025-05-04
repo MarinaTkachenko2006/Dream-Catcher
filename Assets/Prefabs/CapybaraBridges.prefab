@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2295170310359826208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6908948485570237898}
+  - component: {fileID: 1323927171858844139}
+  m_Layer: 0
+  m_Name: ball_cat_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6908948485570237898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2295170310359826208}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.9998462, z: 0, w: 0.0175397}
+  m_LocalPosition: {x: 0, y: 1.66, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4419483971115905446}
+  m_LocalEulerAnglesHint: {x: 0, y: 177.99, z: 0}
+--- !u!212 &1323927171858844139
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2295170310359826208}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 851328067
+  m_SortingLayer: 8
+  m_SortingOrder: 10
+  m_Sprite: {fileID: -391661144, guid: 890beb3a0311ecb40b4e80d39a715d3f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.125, y: 0.9583333}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &8862299579988464786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4419483971115905446}
+  - component: {fileID: 5721384228724308927}
+  m_Layer: 0
+  m_Name: CapybaraBridges
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4419483971115905446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862299579988464786}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6908948485570237898}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5721384228724308927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862299579988464786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f032d2a87e102ae41a7f3422f056fb4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: "\u041A\u0430\u043F\u0438\u0431\u0430\u0440\u0430"
+  damage: 20
+  maxHP: 70
+  currentHP: 70
+  maxMP: 9999
+  currentMP: 9999
+  introText: "\u041A\u0430\u043F\u0438\u0431\u0430\u0440\u0430 \u0432\u044B\u0437\u0432\u0430\u0435\u0442
+    \u0442\u0435\u0431\u044F \u043D\u0430 \u043F\u043E\u0435\u0434\u0438\u043D\u043E\u043A"
+  location: Bridges
+  SecretePunchDamage: 40
+  SecretePunchText: "\u041A\u0430\u043F\u0438\u0431\u0430\u0440\u0430 \u043D\u0435\u0440\u0432\u043D\u043E
+    \u0436\u0443\u0435\u0442 \u0442\u0440\u0430\u0432\u0443"
+  possibleActions:
+  - actionType: 0
+    chance: 50
+    minDamage: 5
+    maxDamage: 20
+    healAmount: 0
+    buffDuration: 0
+    description: "\u043D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0434\u0430\u0440!"
+  - actionType: 1
+    chance: 29
+    minDamage: 20
+    maxDamage: 25
+    healAmount: 0
+    buffDuration: 0
+    description: "\u043D\u0430\u043D\u043E\u0441\u0438\u0442 \u0441\u0438\u043B\u044C\u043D\u044B\u0439
+      \u0443\u0434\u0430\u0440!"
+  currentDefense: 0
+  attackBuff: 0
+  buffDuration: 0

@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+
+public enum EnemyActionType { BasicAttack, StrongAttack, Heal, Defend, BuffAttack }
 public class BattleSystem : MonoBehaviour
 {
     public GameObject playerPrefab;
@@ -40,7 +42,7 @@ public class BattleSystem : MonoBehaviour
         GameObject enemyGO = Instantiate(BattleLoader.Instance.enemyPrefab, enemyBattleStation);
         enemyUnit = enemyGO.GetComponent<EnemyBattleUnit>();
 
-        ActivateBackground(enemyUnit.location);
+        // ActivateBackground(enemyUnit.location); // пока не надо
 
         dialogueText.text = enemyUnit.introText;
 
@@ -65,7 +67,7 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = "Вы проиграли.";
             StartCoroutine(ExitBattle(false));
         }
-        ActivateBackground("");
+        // ActivateBackground("");
     }
     IEnumerator ExitBattle(bool won)
     {
@@ -98,7 +100,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.currentMP -= 10;
         playerHUD.SetMP(playerUnit.currentMP);
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
-        // audioManager.PlaySFX(audioManager.boom);
+        audioManager.PlaySFX(audioManager.attack);
 
         if (isDead)
         {
@@ -123,7 +125,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.currentMP -= 10;
         playerHUD.SetMP(playerUnit.currentMP);
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage * 100);
-        // audioManager.PlaySFX(audioManager.boom);
+        audioManager.PlaySFX(audioManager.boom);
 
         if (isDead)
         {
@@ -145,13 +147,15 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerHeal()
     {
+        playerUnit.currentMP -= 10;
         audioManager.PlaySFX(audioManager.click);
-        playerUnit.Heal(20);
+        playerUnit.Heal(30);
         state = BattleState.ENEMYTURN;
 
         playerHUD.SetHP(playerUnit.currentHP);
         playerHUD.SetMP(playerUnit.currentMP);
         dialogueText.text = "Вы восстановили силы";
+        audioManager.PlaySFX(audioManager.heal);
 
         yield return new WaitForSeconds(2f);
 
@@ -161,12 +165,13 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerRestoreMana()
     {
         audioManager.PlaySFX(audioManager.click);
-        playerUnit.restoreMana(15);
+        playerUnit.restoreMana(35);
         state = BattleState.ENEMYTURN;
 
         playerHUD.SetHP(playerUnit.currentHP);
         playerHUD.SetMP(playerUnit.currentMP);
         dialogueText.text = "Вы привели рассудок в порядок";
+        audioManager.PlaySFX(audioManager.heal);
 
         yield return new WaitForSeconds(2f);
 
@@ -174,22 +179,38 @@ public class BattleSystem : MonoBehaviour
     }
 
 
-
-
-    // логика поведения врага в битве
     IEnumerator EnemyTurn()
     {
-        dialogueText.text = enemyUnit.unitName + " атакует!";
-
+        dialogueText.text = enemyUnit.unitName + " готовится к действию...";
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+        EnemyAction selectedAction = ChooseEnemyAction();
 
-        playerHUD.SetHP(playerUnit.currentHP);
+        switch (selectedAction.actionType)
+        {
+            case EnemyActionType.BasicAttack:
+                yield return StartCoroutine(EnemyBasicAttack(selectedAction));
+                break;
 
-        yield return new WaitForSeconds(1f);
+            case EnemyActionType.StrongAttack:
+                yield return StartCoroutine(EnemyStrongAttack(selectedAction));
+                break;
 
-        if (isDead)
+            case EnemyActionType.Heal:
+                yield return StartCoroutine(EnemyHeal(selectedAction));
+                break;
+
+            case EnemyActionType.Defend:
+                yield return StartCoroutine(EnemyDefend(selectedAction));
+                break;
+
+            case EnemyActionType.BuffAttack:
+                yield return StartCoroutine(EnemyBuffAttack(selectedAction));
+                break;
+        }
+        enemyUnit.ProcessBuffs();
+
+        if (playerUnit.currentHP <= 0)
         {
             state = BattleState.LOST;
             EndBattle();
@@ -199,17 +220,45 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
             PlayerTurn();
         }
-
     }
+
+    private EnemyAction ChooseEnemyAction()
+    {
+        List<EnemyAction> weightedActions = new List<EnemyAction>();
+        foreach (var action in enemyUnit.possibleActions)
+        {
+            for (int i = 0; i < action.chance; i++)
+            {
+                weightedActions.Add(action);
+            }
+        }
+        int randomIndex = Random.Range(0, weightedActions.Count);
+        return weightedActions[randomIndex];
+    }
+
     void PlayerTurn()
     {
         dialogueText.text = "Выберите действие:";
     }
+
+    IEnumerator ShowManaWarning()
+    {
+        string originalText = dialogueText.text;
+        dialogueText.text = "Недостаточно маны!";
+        yield return new WaitForSeconds(1.5f);
+        dialogueText.text = originalText;
+    }
+
     public void OnAttackButton()
     {
-        audioManager.PlaySFX(audioManager.click);
         if (state != BattleState.PLAYERTURN)
             return;
+
+        if (playerUnit.currentMP < 10)
+        {
+            StartCoroutine(ShowManaWarning());
+            return;
+        }
 
         StartCoroutine(PlayerAttack());
     }
@@ -219,6 +268,12 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
 
+        if (playerUnit.currentMP < 15)
+        {
+            StartCoroutine(ShowManaWarning());
+            return;
+        }
+
         StartCoroutine(PlayerStrongAttack());
     }
     public void OnHealButton()
@@ -226,6 +281,11 @@ public class BattleSystem : MonoBehaviour
         audioManager.PlaySFX(audioManager.click);
         if (state != BattleState.PLAYERTURN)
             return;
+        if (playerUnit.currentMP < 10)
+        {
+            StartCoroutine(ShowManaWarning());
+            return;
+        }
         StartCoroutine(PlayerHeal());
     }
 
@@ -235,6 +295,60 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
         StartCoroutine(PlayerRestoreMana());
+    }
+
+    IEnumerator EnemyBasicAttack(EnemyAction action)
+    {
+        int damage = Random.Range(action.minDamage, action.maxDamage + 1) + enemyUnit.attackBuff;
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        yield return new WaitForSeconds(1f);
+
+        bool isDead = playerUnit.TakeDamage(damage);
+        playerHUD.SetHP(playerUnit.currentHP);
+        audioManager.PlaySFX(audioManager.attack);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator EnemyStrongAttack(EnemyAction action)
+    {
+        int damage = Random.Range(action.minDamage, action.maxDamage + 1) + enemyUnit.attackBuff;
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        yield return new WaitForSeconds(1f);
+
+        bool isDead = playerUnit.TakeDamage(Mathf.RoundToInt(damage * 1.5f) - enemyUnit.currentDefense);
+        playerHUD.SetHP(playerUnit.currentHP);
+        // audioManager.PlaySFX(audioManager.strongAttack);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator EnemyHeal(EnemyAction action)
+    {
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        enemyUnit.Heal(action.healAmount);
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        audioManager.PlaySFX(audioManager.heal);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator EnemyDefend(EnemyAction action)
+    {
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        enemyUnit.ApplyDefenseBuff(action.healAmount, action.buffDuration);
+        // audioManager.PlaySFX(audioManager.shield);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator EnemyBuffAttack(EnemyAction action)
+    {
+        dialogueText.text = enemyUnit.unitName + " " + action.description;
+        enemyUnit.ApplyAttackBuff(action.healAmount, action.buffDuration);
+        // audioManager.PlaySFX(audioManager.powerUp);
+
+        yield return new WaitForSeconds(1f);
     }
 
 }

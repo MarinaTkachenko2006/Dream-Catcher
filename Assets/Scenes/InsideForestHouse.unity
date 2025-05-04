@@ -153,11 +153,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1866110865}
   SFXSource: {fileID: 701551344}
-  background: {fileID: 8300000, guid: 8a4ce50f2f8532b40b4e77a12db918ab, type: 3}
+  background: {fileID: 8300000, guid: ec576adf1e752324a86e090cc2f1a42b, type: 3}
   steps: {fileID: 8300000, guid: 70b3358bd6c180c45a04216c8f895d9d, type: 3}
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
   click: {fileID: 0}
   item: {fileID: 0}
+  boom: {fileID: 0}
 --- !u!4 &191998031
 Transform:
   m_ObjectHideFlags: 0
