@@ -1137,6 +1137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1774002235}
+  gameStarts: 0
   state: 0
 --- !u!4 &749340425
 Transform:
@@ -1285,7 +1286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a319dd7f59a3a419b473934b83c354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: '?'
+  itemName: Drawings
   activeSprite: {fileID: 1967106546, guid: b9c7d5c6d04abfe4aacbc87a1c233027, type: 3}
   inactiveSprite: {fileID: 1029356212, guid: 2644948531c89b346898174bc9f98594, type: 3}
 --- !u!1 &811893789
@@ -1505,7 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a319dd7f59a3a419b473934b83c354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: '?'
+  itemName: Drawings
   activeSprite: {fileID: -936352668, guid: b9c7d5c6d04abfe4aacbc87a1c233027, type: 3}
   inactiveSprite: {fileID: -1456094727, guid: 2644948531c89b346898174bc9f98594, type: 3}
 --- !u!212 &837451005
@@ -3500,7 +3501,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 3450589
   m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e92ac9e068a011d419e4e92e2ff340d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5022,7 +5023,10 @@ MonoBehaviour:
       \u0437\u0434\u0435\u0441\u044C, \u043B\u0438\u0431\u043E \u043C\u043E\u0436\u0435\u0442\u0435
       \u0442\u0435\u043B\u0435\u043F\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F
       \u0432 \u043C\u0435\u0436\u0434\u0443\u0441\u043D\u043E\u0432\u044C\u0435.*"
-  ItemToGive: 
+  dialogLastItem:
+    lines:
+    - 
+  ItemToGive: Camera
 --- !u!61 &2009742354
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject cheatMenuUI;
     public GameObject pauseMenuUI;
     private bool isPaused = false;
+    public event UnityAction OnMenuClosed;
 
     void Awake()
     {
@@ -108,6 +110,7 @@ public class PauseMenuManager : MonoBehaviour
             Time.timeScale = 1f;
             isPaused = false;
         }
+        OnMenuClosed?.Invoke();
     }
 
     public void LoadMainMenu()
@@ -147,7 +150,10 @@ public class PauseMenuManager : MonoBehaviour
             cheatMenuUI.SetActive(false);
 
         if (pauseMenuUI != null)
+        {
             pauseMenuUI.SetActive(true);
+            ResumeGame();
+        }
     }
 
     public void ToggleSpeedBoost(bool enabled)

@@ -7,6 +7,8 @@ public class ItemGiverController : MonoBehaviour, Interactable
     [SerializeField] Dialog dialog1;
     [SerializeField] Dialog dialog2;
     [SerializeField] private Dialog dialogFirstItem;
+    [SerializeField] private Dialog dialogLastItem;
+
     public string ItemToGive;
     //public bool itemIsGiven = false;
     AudioManager audioManager;
@@ -37,6 +39,11 @@ public class ItemGiverController : MonoBehaviour, Interactable
         if (inventoryManager.ItemsCount() == 0)
         {
             yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialogFirstItem));
+        }
+        else if (inventoryManager.ItemsCount() == 3)
+        {
+            dialogLastItem.Lines[0] = "*Вы почувствовали, что ранее запертая дверь в междусновье открылась.*";
+            yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialogLastItem));
         }
         inventoryManager.AddItem(ItemToGive);
         //itemIsGiven = true;

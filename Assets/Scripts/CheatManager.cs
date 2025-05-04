@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class CheatManager : MonoBehaviour
 {
+    [SerializeField] private Dialog dialog;
     public static CheatManager Instance;
     public bool isSpeedBoosted = false;
     public bool hasAllItems = false;
     GameObject playerObject;
+    private bool showCheatDialogOnExit;
     void Awake()
     {
         if (Instance == null)
@@ -23,14 +25,21 @@ public class CheatManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        PauseMenuManager.Instance.OnMenuClosed += HandleMenuClosed;
+    }
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        PauseMenuManager.Instance.OnMenuClosed += HandleMenuClosed;
     }
 
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        PauseMenuManager.Instance.OnMenuClosed -= HandleMenuClosed;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -61,11 +70,24 @@ public class CheatManager : MonoBehaviour
 
     public void GetAllItems()
     {
-        InventoryManager.Instance.AddItem("Collar");
-        InventoryManager.Instance.AddItem("Rod");
-        InventoryManager.Instance.AddItem("?");
-        InventoryManager.Instance.AddItem("Camera");
-        hasAllItems = true;
+        if (!hasAllItems)
+        {
+            InventoryManager.Instance.AddItem("Collar");
+            InventoryManager.Instance.AddItem("Rod");
+            InventoryManager.Instance.AddItem("Drawings");
+            InventoryManager.Instance.AddItem("Camera");
+            hasAllItems = true;
+            showCheatDialogOnExit = true;
+        }
+    }
+
+    private void HandleMenuClosed()
+    {
+        if (!showCheatDialogOnExit)
+            return;
+
+        StartCoroutine(DialogManager.Instance.ShowDialog(dialog));
+        showCheatDialogOnExit = false;
     }
 
     // метод применяет все включенные читы при смене сцены
@@ -82,6 +104,7 @@ public class CheatManager : MonoBehaviour
         if (isSpeedBoosted)
         {
             ToggleSpeedBoost(false);
+            hasAllItems = false;
         }
     }
 }

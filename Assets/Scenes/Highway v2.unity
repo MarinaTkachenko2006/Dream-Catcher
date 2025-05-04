@@ -1635,9 +1635,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 462362366}
-  - component: {fileID: 462362365}
   - component: {fileID: 462362368}
   - component: {fileID: 462362367}
+  - component: {fileID: 462362369}
   m_Layer: 9
   m_Name: ItemGiver
   m_TagString: Untagged
@@ -1645,34 +1645,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &462362365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462362364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68656773987e5a4184c61ac8cb0b2a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialog1:
-    lines:
-    - '?'
-  dialog2:
-    lines:
-    - "*\u041F\u043E\u043B\u0443\u0447\u0435\u043D \u043F\u0440\u0435\u0434\u043C\u0435\u0442:
-      ?*"
-  dialogFirstItem:
-    lines:
-    - "*\u041F\u043E\u0437\u0434\u0440\u0430\u0432\u043B\u044F\u0435\u043C, \u0432\u044B
-      \u043D\u0430\u0448\u043B\u0438 \u0441\u0432\u043E\u0439 \u043F\u0435\u0440\u0432\u044B\u0439
-      \u043F\u0440\u0435\u0434\u043C\u0435\u0442.*"
-    - "*\u041F\u043E\u0437\u0434\u0440\u0430\u0432\u043B\u044F\u0435\u043C, \u0432\u044B
-      \u043D\u0430\u0448\u043B\u0438 \u0441\u0432\u043E\u0439 \u043F\u0435\u0440\u0432\u044B\u0439
-      \u043F\u0440\u0435\u0434\u043C\u0435\u0442.*"
-  ItemToGive: '?'
 --- !u!4 &462362366
 Transform:
   m_ObjectHideFlags: 0
@@ -1761,6 +1733,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &462362369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462362364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659146a2ca2f15247a22bca34baab99c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelToLoad: ArtWorld
 --- !u!1 &478282570
 GameObject:
   m_ObjectHideFlags: 0
@@ -8362,6 +8347,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topY: 80
   bottomY: -50
+  rightX: 10
+  leftX: -10
 --- !u!50 &950346000
 Rigidbody2D:
   serializedVersion: 4

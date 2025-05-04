@@ -131,8 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: "\u0411\u0438\u043B\u043B"
   damage: 25
-  maxHP: 70
-  currentHP: 70
+  maxHP: 65
+  currentHP: 65
   maxMP: 9999
   currentMP: 9999
   introText: "\u0411\u0438\u043B\u043B \u0432\u044B\u0437\u0432\u0430\u043B \u0442\u0435\u0431\u044F
@@ -141,3 +141,21 @@ MonoBehaviour:
   SecretePunchDamage: 40
   SecretePunchText: "\u0411\u0438\u043B\u043B \u0445\u0430\u0440\u043A\u0430\u0435\u0442
     \u0432 \u0442\u0435\u0431\u044F"
+  possibleActions:
+  - actionType: 0
+    chance: 57
+    minDamage: 15
+    maxDamage: 20
+    healAmount: 0
+    buffDuration: 0
+    description: "\u0430\u0442\u0430\u043A\u0443\u0435\u0442!"
+  - actionType: 1
+    chance: 21
+    minDamage: 20
+    maxDamage: 30
+    healAmount: 0
+    buffDuration: 0
+    description: "\u0441\u0438\u043B\u044C\u043D\u043E \u0430\u0442\u0430\u043A\u0443\u0435\u0442!"
+  currentDefense: 0
+  attackBuff: 0
+  buffDuration: 0

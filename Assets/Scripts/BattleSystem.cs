@@ -149,7 +149,7 @@ public class BattleSystem : MonoBehaviour
     {
         playerUnit.currentMP -= 10;
         audioManager.PlaySFX(audioManager.click);
-        playerUnit.Heal(20);
+        playerUnit.Heal(30);
         state = BattleState.ENEMYTURN;
 
         playerHUD.SetHP(playerUnit.currentHP);

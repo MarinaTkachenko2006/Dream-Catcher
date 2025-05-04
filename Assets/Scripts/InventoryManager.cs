@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// ВРЕМЕННЫЙ КЛАСС
 public class InventoryManager: MonoBehaviour
 {
     public static InventoryManager Instance;
