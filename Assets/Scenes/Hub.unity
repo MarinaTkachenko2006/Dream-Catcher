@@ -206,6 +206,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &78983627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 78983629}
+  - component: {fileID: 78983628}
+  m_Layer: 0
+  m_Name: InventoryController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &78983628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78983627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3da76cfff63ee409b5bf59d3050345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 1085768069}
+  inventoryData: {fileID: 11400000, guid: 838ad9459af7faf489cb9873206d8eb7, type: 2}
+  initialItems: []
+--- !u!4 &78983629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78983627}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.467636, y: 149.54163, z: -0.20026734}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &462740681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,7 +1275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1029808996}
-  - component: {fileID: 1029808995}
+  - component: {fileID: 1029808997}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -1236,19 +1283,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1029808995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029808994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6bc42eeb33f4b4f84996cdca5905c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectedItems: []
 --- !u!4 &1029808996
 Transform:
   m_ObjectHideFlags: 0
@@ -1264,6 +1298,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029808997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029808994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b62c6caebcd09468727873a6ba8564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryController: {fileID: 78983628}
 --- !u!1 &1043941028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2208,7 +2255,6 @@ GameObject:
   - component: {fileID: 1774002235}
   - component: {fileID: 1774002236}
   - component: {fileID: 1774002239}
-  - component: {fileID: 1774002240}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2351,25 +2397,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1774002240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774002234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3da76cfff63ee409b5bf59d3050345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryUI: {fileID: 1085768069}
-  inventoryData: {fileID: 11400000, guid: 838ad9459af7faf489cb9873206d8eb7, type: 2}
-  initialItems:
-  - item: {fileID: 11400000, guid: 724d71bf128adfe42934475d11350b6e, type: 2}
-  - item: {fileID: 11400000, guid: ba8c8a2602aed0641a9da7b2c621a8fa, type: 2}
-  - item: {fileID: 11400000, guid: a8fb9752969137f499a90908cd42c81d, type: 2}
-  - item: {fileID: 11400000, guid: c95e6ed2a4c2a904bb56e94e39e1b721, type: 2}
 --- !u!1 &1857863722
 GameObject:
   m_ObjectHideFlags: 0
@@ -3957,23 +3984,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog1:
-    lines:
-    - "*\u0412\u044B \u0447\u0443\u0432\u0441\u0442\u0432\u0443\u0435\u0442\u0435,
-      \u043A\u0430\u043A \u0432\u0430\u0441 \u043F\u0440\u0438\u044F\u0442\u043D\u043E
-      \u043E\u0431\u0434\u0443\u0432\u0430\u0435\u0442 \u0442\u0435\u043F\u043B\u044B\u0439
-      \u0432\u0435\u0442\u0435\u0440*"
-    - "*\u041D\u0430 \u0432\u0430\u0441 \u043D\u0430\u0445\u043B\u044B\u043D\u044B\u0432\u0430\u044E\u0442
-      \u0432\u043E\u0441\u043F\u043E\u043C\u0438\u043D\u0430\u043D\u0438\u044F \u043E
-      \u0442\u043E\u043C, \u0447\u0442\u043E \u0432\u044B \u043A\u043E\u0433\u0434\u0430
-      \u0445\u043E\u0442\u0435\u043B\u0438 \u0443\u0437\u043D\u0430\u0442\u044C,
-      \u043D\u043E \u0442\u0430\u043A \u0438 \u043D\u0435 \u0443\u0437\u043D\u0430\u043B\u0438*"
+    lines: []
   dialog2:
-    lines:
-    - "*\u041F\u043E\u043B\u0443\u0447\u0435\u043D \u043F\u0440\u0435\u0434\u043C\u0435\u0442
-      \"\u0423\u0434\u043E\u0447\u043A\u0430\"*"
-  itemToGive: {fileID: 11400000, guid: 5d668c058c312f846a9cdad7796409dd, type: 2}
-  itemIsGiven: 0
-  audioManager: {fileID: 0}
+    lines: []
+  dialogFirstItem:
+    lines: []
+  dialogLastItem:
+    lines: []
+  ItemToGive: 
 --- !u!50 &2123708288
 Rigidbody2D:
   serializedVersion: 4
@@ -4668,3 +4686,4 @@ SceneRoots:
   - {fileID: 1489292437}
   - {fileID: 1857863724}
   - {fileID: 2123708291}
+  - {fileID: 78983629}

@@ -26,6 +26,16 @@ namespace Inventory.Model
             }
         }
 
+        public void Clear()
+        {
+            for (int i = 0; i < inventoryItems.Count; i++)
+            {
+                inventoryItems[i] = InventoryItemStruct.GetEmptyItem();
+            }
+
+            OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
+        }
+
         public void AddItem(ItemSO item)
         {
             if (AddItemToFirstFreeSlot(item))
