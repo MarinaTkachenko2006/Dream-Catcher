@@ -1248,6 +1248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6bc42eeb33f4b4f84996cdca5905c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectedItems: []
 --- !u!4 &1029808996
 Transform:
   m_ObjectHideFlags: 0
@@ -2363,7 +2364,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 1085768069}
-  inventorySize: 10
+  inventoryData: {fileID: 11400000, guid: 838ad9459af7faf489cb9873206d8eb7, type: 2}
+  initialItems:
+  - item: {fileID: 11400000, guid: 724d71bf128adfe42934475d11350b6e, type: 2}
+  - item: {fileID: 11400000, guid: ba8c8a2602aed0641a9da7b2c621a8fa, type: 2}
+  - item: {fileID: 11400000, guid: a8fb9752969137f499a90908cd42c81d, type: 2}
+  - item: {fileID: 11400000, guid: c95e6ed2a4c2a904bb56e94e39e1b721, type: 2}
 --- !u!1 &1857863722
 GameObject:
   m_ObjectHideFlags: 0
@@ -3967,6 +3973,7 @@ MonoBehaviour:
       \"\u0423\u0434\u043E\u0447\u043A\u0430\"*"
   itemToGive: {fileID: 11400000, guid: 5d668c058c312f846a9cdad7796409dd, type: 2}
   itemIsGiven: 0
+  audioManager: {fileID: 0}
 --- !u!50 &2123708288
 Rigidbody2D:
   serializedVersion: 4

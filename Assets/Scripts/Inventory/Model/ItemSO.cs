@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class ItemSO : ScriptableObject
+namespace Inventory.Model
 {
-    public int ID => GetInstanceID();
+    [CreateAssetMenu]
+    public class ItemSO : ScriptableObject
+    {
+        public int ID => GetInstanceID();
 
-    [field: SerializeField]
-    public string Name { get; set; }
+        [field: SerializeField]
+        public string Name { get; set; }
 
-    [field: SerializeField]
-    [field: TextArea(2,5)]
-    public string Description { get; set; }
+        [field: SerializeField]
+        [field: TextArea(2, 5)]
+        public string Description { get; set; }
 
-    [field: SerializeField]
-    public Sprite icon;
+        [field: SerializeField]
+        public Sprite Icon;
+    }
 }

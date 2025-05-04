@@ -6,23 +6,28 @@ public class ItemGiverController : MonoBehaviour, Interactable
 {
     [SerializeField] Dialog dialog1;
     [SerializeField] Dialog dialog2;
-    [SerializeField] private ItemSO itemToGive;
-    public bool itemIsGiven = false;
+    [SerializeField] private Dialog dialogFirstItem;
+    [SerializeField] private Dialog dialogLastItem;
+
+    public string ItemToGive;
+    //public bool itemIsGiven = false;
     AudioManager audioManager;
+    InventoryManager inventoryManager;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        inventoryManager = InventoryManager.Instance;
     }
     public void Interact()
     {
-        if (!itemIsGiven)
+        if (!inventoryManager.HasItem(ItemToGive))
         {
             StartCoroutine(InteractRoutine());
         }
         else
         {
-            Debug.Log("Предмет уже получен.");
+            Debug.Log("Предмет уже получен");
         }
     }
 
@@ -30,21 +35,17 @@ public class ItemGiverController : MonoBehaviour, Interactable
     {
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog1));
         audioManager.PlaySFX(audioManager.item);
-
-        if (InventoryManager.Instance == null)
-        {
-            Debug.LogError("InventoryManager не найден!");
-            yield break;
-        }
-
-        InventoryManager.Instance.AddItem(itemToGive);
-        
-        if (InventoryUI.Instance != null)
-        {
-            InventoryUI.Instance.UpdateInventoryUI();
-        }
-
         yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialog2));
-        itemIsGiven = true;
+        if (inventoryManager.ItemsCount() == 0)
+        {
+            yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialogFirstItem));
+        }
+        else if (inventoryManager.ItemsCount() == 4)
+        {
+            dialogLastItem.Lines[0] = "*Вы почувствовали, что ранее запертая дверь в междусновье открылась.*";
+            yield return StartCoroutine(DialogManager.Instance.ShowDialog(dialogLastItem));
+        }
+        inventoryManager.AddItem(ItemToGive);
+        //itemIsGiven = true;
     }
 }

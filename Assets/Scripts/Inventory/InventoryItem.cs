@@ -5,53 +5,55 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItem : MonoBehaviour, IPointerClickHandler
+namespace Inventory.UI
 {
-    [SerializeField]
-    public Image itemImage;
-
-    [SerializeField]
-    public Image borderFrame;
-
-    public event Action<InventoryItem> OnItemClicked;
-
-    private bool empty = true;
-
-    public void Awake()
+    public class InventoryItem : MonoBehaviour, IPointerClickHandler
     {
-        ResetData();
-        Deselect();
-    }
+        [SerializeField]
+        public Image itemImage;
 
-    public void ResetData()
-    {
-        this.itemImage.gameObject.SetActive(false);
-        this.empty = true;
-    }
+        [SerializeField]
+        public Image borderFrame;
 
-    public void Deselect()
-    {
-        this.borderFrame.enabled = false;
-    }
+        public event Action<InventoryItem> OnItemClicked;
 
-    public void SetData(Sprite sprite)
-    {
-        this.itemImage.gameObject.SetActive(true);
-        this.itemImage.sprite = sprite;
-        this.empty = false;
-    }
+        private bool empty = true;
 
-    public void Select()
-    {
-        borderFrame.enabled = true;
-    }
-
-    public void OnPointerClick(PointerEventData pointerData)
-    {         
-        if (pointerData.button == PointerEventData.InputButton.Left)
+        public void Awake()
         {
-            OnItemClicked?.Invoke(this);
+            ResetData();
+            Deselect();
+        }
+
+        public void ResetData()
+        {
+            itemImage.gameObject.SetActive(false);
+            empty = true;
+        }
+
+        public void Deselect()
+        {
+            borderFrame.enabled = false;
+        }
+
+        public void SetData(Sprite sprite)
+        {
+            itemImage.gameObject.SetActive(true);
+            itemImage.sprite = sprite;
+            empty = false;
+        }
+
+        public void Select()
+        {
+            borderFrame.enabled = true;
+        }
+
+        public void OnPointerClick(PointerEventData pointerData)
+        {
+            if (pointerData.button == PointerEventData.InputButton.Left)
+            {
+                OnItemClicked?.Invoke(this);
+            }
         }
     }
 }
-

@@ -17,4 +17,4 @@ MonoBehaviour:
     \u043E \u043C\u0435\u0441\u0442\u0430\u0445\n\u041B\u043E\u043A\u0430\u0446\u0438\u044F:
     \u0441\u0444\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0439
     \u043C\u0438\u0440"
-  icon: {fileID: 21300000, guid: cd340c1fdb4abba4cbc1eaf928d8cba9, type: 3}
+  Icon: {fileID: 21300000, guid: cd340c1fdb4abba4cbc1eaf928d8cba9, type: 3}

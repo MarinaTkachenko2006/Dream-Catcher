@@ -3,80 +3,98 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class InventoryPage : MonoBehaviour
+namespace Inventory.UI
 {
-    [SerializeField]
-    private InventoryItem itemPrefab;
-
-    [SerializeField]
-    private RectTransform contentPanel;
-
-    [SerializeField]
-    private InventoryDescription itemDescription;
-
-    List<InventoryItem> inventoryItems = new List<InventoryItem>();
-
-    public event Action<int> OnDescriptionRequested;
-
-    private void Awake()
+    public class InventoryPage : MonoBehaviour
     {
-        Hide();
-        itemDescription.ResetDescription();
-    }
+        [SerializeField]
+        private InventoryItem itemPrefab;
 
-    public void InitializeInventoryUI(int inventorySize)
-    {
-        for (int i = 0; i < inventorySize; i++)
+        [SerializeField]
+        private RectTransform contentPanel;
+
+        [SerializeField]
+        private InventoryDescription itemDescription;
+
+        List<InventoryItem> inventoryItems = new List<InventoryItem>();
+
+        public event Action<int> OnDescriptionRequested;
+
+        private void Awake()
         {
-            InventoryItem item = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
-            item.transform.SetParent(contentPanel);
-            inventoryItems.Add(item);
-            item.OnItemClicked += HandleItemSelection;
+            Hide();
+            itemDescription.ResetDescription();
         }
-    }
 
-    public void UpdateData(int itemIndex, Sprite itemImage)
-    {
-        if (inventoryItems.Count > itemIndex)
+        public void InitializeInventoryUI(int inventorySize)
         {
-            inventoryItems[itemIndex].SetData(itemImage);
+            for (int i = 0; i < inventorySize; i++)
+            {
+                InventoryItem item = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
+                item.transform.SetParent(contentPanel);
+                inventoryItems.Add(item);
+                item.OnItemClicked += HandleItemSelection;
+            }
         }
-    }
 
-    private void HandleItemSelection(InventoryItem item)
-    {
-        int index = inventoryItems.IndexOf(item);
-        if (index == -1)
+        public void UpdateData(int itemIndex, Sprite itemImage)
         {
-            return;
+            if (inventoryItems.Count > itemIndex)
+            {
+                inventoryItems[itemIndex].SetData(itemImage);
+            }
         }
-        OnDescriptionRequested?.Invoke(index);
-    }
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-        itemDescription.ResetDescription();
-        ResetSelection();
-    }
-
-    private void ResetSelection()
-    {
-        itemDescription.ResetDescription();
-        DeselectAllItems();
-    }
-
-    private void DeselectAllItems()
-    {
-        foreach (InventoryItem item in inventoryItems)
+        private void HandleItemSelection(InventoryItem item)
         {
-            item.Deselect();
+            int index = inventoryItems.IndexOf(item);
+            if (index == -1)
+            {
+                return;
+            }
+            OnDescriptionRequested?.Invoke(index);
         }
-    }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
+        public void Show()
+        {
+            gameObject.SetActive(true);
+            itemDescription.ResetDescription();
+            ResetSelection();
+        }
+
+        public void ResetSelection()
+        {
+            itemDescription.ResetDescription();
+            DeselectAllItems();
+        }
+
+        private void DeselectAllItems()
+        {
+            foreach (InventoryItem item in inventoryItems)
+            {
+                item.Deselect();
+            }
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+
+        internal void UpdateDescription(int itemIndex, Sprite icon, string name, string description)
+        {
+            itemDescription.SetDescription(icon, name, description);
+            DeselectAllItems();
+            inventoryItems[itemIndex].Select();
+        }
+
+        internal void ResetAllItems()
+        {
+            foreach(InventoryItem item in inventoryItems)
+            {
+                item.ResetData();
+                item.Deselect();
+            }
+        }
     }
 }
