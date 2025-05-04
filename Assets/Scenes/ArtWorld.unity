@@ -2309,9 +2309,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3469b0729cc825d49a4e76832f7d5700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
+  musicSource: {fileID: 1018911910}
   SFXSource: {fileID: 1276367697}
-  background: {fileID: 8300000, guid: 21067eedbd40a36489de4b61d01fbb22, type: 3}
+  background: {fileID: 8300000, guid: 25fc25c9990db324799f4e373d563145, type: 3}
   steps: {fileID: 8300000, guid: 70b3358bd6c180c45a04216c8f895d9d, type: 3}
   doors: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
   click: {fileID: 0}
