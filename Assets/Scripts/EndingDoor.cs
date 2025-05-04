@@ -8,7 +8,6 @@ public class SpecialDoor : MonoBehaviour, Interactable
     [SerializeField] Dialog EnoughItemsDialog;
     [SerializeField] string sceneToLoad;
     InventoryManager inventoryManager = InventoryManager.Instance;
-    
     private bool isEndingAvailable = false;
 
     public void Interact()
@@ -28,7 +27,7 @@ public class SpecialDoor : MonoBehaviour, Interactable
     {
         // Показываем диалог
         yield return DialogManager.Instance.ShowDialog(dialog);
-        
+
         // Если это концовочный диалог
         if (isEnding)
         {

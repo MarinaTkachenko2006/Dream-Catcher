@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CheatManager : MonoBehaviour
 {
     [SerializeField] private Dialog dialog;
+    [SerializeField] private Toggle speedBoostToggle;
+    [SerializeField] private Toggle allItemsToggle;
     public static CheatManager Instance;
     public bool isSpeedBoosted = false;
     public bool hasAllItems = false;
@@ -68,17 +71,18 @@ public class CheatManager : MonoBehaviour
         }
     }
 
-    public void GetAllItems()
+    public void GetAllItems(bool enabled)
     {
-        if (!hasAllItems)
-        {
-            InventoryManager.Instance.AddItem("Collar");
-            InventoryManager.Instance.AddItem("Rod");
-            InventoryManager.Instance.AddItem("Drawings");
-            InventoryManager.Instance.AddItem("Camera");
-            hasAllItems = true;
-            showCheatDialogOnExit = true;
-        }
+        if (enabled)
+            if (!hasAllItems)
+            {
+                InventoryManager.Instance.AddItem("Collar");
+                InventoryManager.Instance.AddItem("Rod");
+                InventoryManager.Instance.AddItem("Drawings");
+                InventoryManager.Instance.AddItem("Camera");
+                hasAllItems = true;
+                showCheatDialogOnExit = true;
+            }
     }
 
     private void HandleMenuClosed()
@@ -106,5 +110,15 @@ public class CheatManager : MonoBehaviour
             ToggleSpeedBoost(false);
             hasAllItems = false;
         }
+        ResetCheatToggles();
+    }
+
+    public void ResetCheatToggles()
+    {
+        if (speedBoostToggle != null)
+            speedBoostToggle.isOn = false;
+
+        if (allItemsToggle != null)
+            allItemsToggle.isOn = false;
     }
 }

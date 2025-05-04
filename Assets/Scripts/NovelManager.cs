@@ -34,6 +34,8 @@ public class NovelManager : MonoBehaviour
         {
             Instance = this;
             textPanel.SetActive(false);
+            if (PauseMenuManager.Instance != null)
+                PauseMenuManager.Instance.enabled = false;
         }
         else
         {
@@ -108,7 +110,7 @@ public class NovelManager : MonoBehaviour
         if (!textPanel.activeSelf)
             return;
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z))
         {
             if (isTyping)
             {
@@ -144,6 +146,10 @@ public class NovelManager : MonoBehaviour
     {
         textPanel.SetActive(false);
         currentPlaylistIndex++;
+
+        if (PauseMenuManager.Instance != null)
+            PauseMenuManager.Instance.enabled = true;
+
         if (currentPlaylistIndex < novelScenes.Length && novelScenes[currentPlaylistIndex].playAutomatically)
         {
             StartSequence(currentPlaylistIndex);

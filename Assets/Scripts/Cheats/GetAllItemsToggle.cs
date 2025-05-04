@@ -10,11 +10,11 @@ public class GetAllItemsToggle : MonoBehaviour
     {
         if (toggleValue)
         {
-            cheatManager.GetAllItems();
+            cheatManager.GetAllItems(true);
         }
         else
         {
-            cheatManager.GetAllItems();
+            //cheatManager.GetAllItems(false);
         }
     }
 }
