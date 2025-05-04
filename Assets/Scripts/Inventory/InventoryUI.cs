@@ -115,7 +115,7 @@ public class InventoryUI : MonoBehaviour
 
         itemSlots.Clear();
 
-        List<Item> collectedItems = InventoryManager.Instance.GetCollectedItems();
+        List<ItemSO> collectedItems = InventoryManager.Instance.GetCollectedItems();
 
         // Проверка на пустой инвентарь
         if (collectedItems == null || collectedItems.Count == 0)
@@ -156,7 +156,7 @@ public class InventoryUI : MonoBehaviour
 
     private void SelectItem(int index)
     {
-        List<Item> collectedItems = InventoryManager.Instance.GetCollectedItems();
+        List<ItemSO> collectedItems = InventoryManager.Instance.GetCollectedItems();
 
         if (index < 0 || index >= collectedItems.Count) return;
 
@@ -164,7 +164,7 @@ public class InventoryUI : MonoBehaviour
 
         // обновляем описание
         selectedItemIcon.sprite = collectedItems[index].icon;
-        itemDescriptionText.text = $"<b>{collectedItems[index].itemName}</b>\n{collectedItems[index].description}";
+        itemDescriptionText.text = $"<b>{collectedItems[index].Name}</b>\n{collectedItems[index].Description}";
 
         for (int i = 0; i < itemSlots.Count; i++)
         {

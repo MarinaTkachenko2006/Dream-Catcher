@@ -6,8 +6,8 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
-    private List<Item> collectedItems = new List<Item>();
-    public static event Action<Item> OnItemAdded;
+    private List<ItemSO> collectedItems = new List<ItemSO>();
+    public static event Action<ItemSO> OnItemAdded;
 
     private void Awake()
     {
@@ -21,16 +21,16 @@ public class InventoryManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void AddItem(Item item)
+    public void AddItem(ItemSO item)
     {
         if (!collectedItems.Contains(item))
         {
             collectedItems.Add(item);
-            Debug.Log($"Добавлен предмет: {item.itemName}");
+            Debug.Log($"Добавлен предмет: {item.Name}");
             OnItemAdded?.Invoke(item);
         }
     }
 
 
-    public List<Item> GetCollectedItems() => new List<Item>(collectedItems);
+    public List<ItemSO> GetCollectedItems() => new List<ItemSO>(collectedItems);
 }

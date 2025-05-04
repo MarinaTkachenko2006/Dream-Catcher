@@ -46,16 +46,33 @@ public class InventoryPage : MonoBehaviour
 
     private void HandleItemSelection(InventoryItem item)
     {
-        itemDescription.SetDescription(image, title, description);
-        inventoryItems[0].Select();
+        int index = inventoryItems.IndexOf(item);
+        if (index == -1)
+        {
+            return;
+        }
+        OnDescriptionRequested?.Invoke(index);
     }
 
     public void Show()
     {
         gameObject.SetActive(true);
         itemDescription.ResetDescription();
+        ResetSelection();
+    }
 
-        inventoryItems[0].SetData(image);
+    private void ResetSelection()
+    {
+        itemDescription.ResetDescription();
+        DeselectAllItems();
+    }
+
+    private void DeselectAllItems()
+    {
+        foreach (InventoryItem item in inventoryItems)
+        {
+            item.Deselect();
+        }
     }
 
     public void Hide()

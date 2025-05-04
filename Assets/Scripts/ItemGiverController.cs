@@ -6,7 +6,7 @@ public class ItemGiverController : MonoBehaviour, Interactable
 {
     [SerializeField] Dialog dialog1;
     [SerializeField] Dialog dialog2;
-    [SerializeField] private Item itemToGive;
+    [SerializeField] private ItemSO itemToGive;
     public bool itemIsGiven = false;
     AudioManager audioManager;
 
