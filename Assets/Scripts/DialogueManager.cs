@@ -14,6 +14,7 @@ public class DialogManager : MonoBehaviour
     public event Action OnHideDialog;
     public static DialogManager Instance { get; private set; }
     public bool IsDialogFinished { get; private set; } = false;
+    private Vector2 _startPos;
 
     private void Awake()
     {
@@ -26,6 +27,8 @@ public class DialogManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _startPos = dialogText.rectTransform.anchoredPosition;
     }
 
     Dialog dialog;
@@ -77,10 +80,12 @@ public class DialogManager : MonoBehaviour
     public IEnumerator TypeDialog(string line)
     {
         IsTyping = true;
+        // dialogText.rectTransform.anchoredPosition = _startPos;
         dialogText.text = "";
         foreach (var letter in line.ToCharArray())
         {
             dialogText.text += letter;
+            // dialogText.rectTransform.anchoredPosition = _startPos;
             yield return new WaitForSeconds(1f / lettersPerSecond);
         }
         IsTyping = false;

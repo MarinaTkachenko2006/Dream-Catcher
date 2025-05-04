@@ -8,6 +8,7 @@ public enum GameState { FreeRoam, Dialog, Battle, BattleDialog }
 public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
+    public int gameStarts;
     public static GameController Instance { get; private set; }
     public GameState state;
     public GameState CurrentState { get { return state; } }

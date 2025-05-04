@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ArtWorld.unity
     guid: 3f80c56f92eb6b543bf715d988053210
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 56ccbac9ddb76b64a908a1834a8b1351
   m_configObjects: {}
