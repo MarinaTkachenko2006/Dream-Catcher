@@ -68,6 +68,16 @@ namespace Inventory.Model
             return inventoryItems[itemIndex];
         }
 
+        public bool ContainsItem(ItemSO item)
+        {
+            foreach (var inventoryItem in inventoryItems)
+            {
+                if (!inventoryItem.isEmpty && inventoryItem.item.ID == item.ID)
+                    return true;
+            }
+            return false;
+        }
+
         private void InformAboutChange()
         {
             OnInventoryUpdated?.Invoke(GetCurrentInventoryState());

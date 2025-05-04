@@ -20,8 +20,20 @@ namespace Inventory.UI
 
         public event Action<int> OnDescriptionRequested;
 
+        public static InventoryPage Instance;
+
         private void Awake()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
             Hide();
             itemDescription.ResetDescription();
         }

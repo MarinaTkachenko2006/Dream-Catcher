@@ -7,9 +7,9 @@ using Inventory;
 using Inventory.Model;
 using Inventory.UI;
 
-public class InventoryManager_1 : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager_1 Instance;
+    public static InventoryManager Instance;
 
     /// <summary>
     /// Событие вызывается каждый раз, когда инвентарь изменился.
@@ -68,14 +68,15 @@ public class InventoryManager_1 : MonoBehaviour
     /// </summary>
     public void AddItem(string itemName)
     {
-        ItemSO itemSO = Resources.Load<ItemSO>($"Assets/ScriptableObjects/{itemName}");
+        ItemSO itemSO = Resources.Load<ItemSO>($"ScriptableObjects/InventoryItems/{itemName}");
         if (itemSO == null)
         {
-            Debug.LogWarning($"[InventoryManager2] ItemSO с именем '{itemName}' не найден в Resources/Items");
+            Debug.LogWarning($"[InventoryManager2] ItemSO с именем '{itemName}' не найден");
             return;
         }
-
-        inventoryData.AddItem(itemSO);
+        if (inventoryData.ContainsItem(itemSO))
+            inventoryData.AddItem(itemSO);
+        OnInventoryChanged?.Invoke();
     }
 
     public int ItemsCount()

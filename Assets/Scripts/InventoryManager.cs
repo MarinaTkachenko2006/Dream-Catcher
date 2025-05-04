@@ -1,11 +1,15 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Inventory;
+using Inventory.Model;
+using Inventory.UI;
 
-public class InventoryManager: MonoBehaviour
+public class InventoryManager1: MonoBehaviour
 {
-    public static InventoryManager Instance;
+    public static InventoryManager1 Instance;
     public event UnityAction OnInventoryChanged;
 
     void Awake()

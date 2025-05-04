@@ -15,12 +15,27 @@ namespace Inventory
         [SerializeField]
         private InventorySO inventoryData;
 
+        public static InventoryController Instance;
+
         public List<InventoryItemStruct> initialItems = new List<InventoryItemStruct>();
 
         private void Start()
         {
             PrepareUI();
             PrepareInventoryData();
+        }
+
+        void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void PrepareInventoryData()
