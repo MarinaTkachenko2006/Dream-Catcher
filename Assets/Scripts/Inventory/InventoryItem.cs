@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItem : MonoBehaviour
+public class InventoryItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     public Image itemImage;
@@ -46,14 +46,8 @@ public class InventoryItem : MonoBehaviour
         borderFrame.enabled = true;
     }
 
-    public void OnPointerClick(BaseEventData data)
-    {
-        if (empty)
-        {
-            return;
-        }
-
-        PointerEventData pointerData = (PointerEventData)data;
+    public void OnPointerClick(PointerEventData pointerData)
+    {         
         if (pointerData.button == PointerEventData.InputButton.Left)
         {
             OnItemClicked?.Invoke(this);
