@@ -108,7 +108,7 @@ public class NovelManager : MonoBehaviour
         if (!textPanel.activeSelf)
             return;
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButton(0))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
         {
             if (isTyping)
             {
